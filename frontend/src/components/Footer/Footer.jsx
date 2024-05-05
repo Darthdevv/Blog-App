@@ -3,7 +3,7 @@
 const Footer = () => {
   return (
     <div>
-      <footer className="footer footer-center p-10 bg-[#0E1217] text-primary-content">
+      <footer className="footer footer-center p-10 bg-[#0E1217] text-white">
         <aside>
           <p className="font-bold">
             ACME Industries Ltd. <br />
