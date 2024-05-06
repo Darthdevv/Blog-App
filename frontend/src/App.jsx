@@ -9,6 +9,11 @@ import CreatePost from './pages/post/CreatePost'
 import Authors from './pages/authors/Authors'
 import PostDetails from './pages/post/PostDetails'
 import UserProfile from './pages/profiles/UserProfile'
+import EditPost from './pages/post/EditPost'
+import DashBoard from './pages/dashboard/DashBoard'
+import CategoryPosts from './pages/post/CategoryPosts'
+import AuthorPosts from './pages/post/AuthorPosts'
+import Logout from './pages/logout/Logout'
 
 function App() {
 
@@ -19,12 +24,17 @@ function App() {
       errorElement: <Error />,
       children: [
         { index: true, element: <Home /> },
-        { path: 'posts/:id', element: <PostDetails /> },
-        { path: 'register', element: <Register /> },
-        { path: 'login', element: <Login /> },
-        { path: 'authors', element: <Authors /> },
-        { path: 'create', element: <CreatePost /> },
-        { path: 'profile/:id', element: <UserProfile /> },
+        { path: "posts/:id", element: <PostDetails /> },
+        { path: "register", element: <Register /> },
+        { path: "login", element: <Login /> },
+        { path: "logout", element: <Logout /> },
+        { path: "authors", element: <Authors /> },
+        { path: "create", element: <CreatePost /> },
+        { path: "profile/:id", element: <UserProfile /> },
+        { path: "posts/:id/edit", element: <EditPost /> },
+        { path: "myposts:id", element: <DashBoard /> },
+        { path: "posts/categories/:category", element: <CategoryPosts /> },
+        { path: "posts/users/:id", element: <AuthorPosts /> },
       ],
     },
   ]);
