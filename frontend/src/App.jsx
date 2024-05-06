@@ -23,18 +23,54 @@ function App() {
       element: <MainLayout />,
       errorElement: <Error />,
       children: [
-        { index: true, element: <Home /> },
-        { path: "posts/:id", element: <PostDetails /> },
-        { path: "register", element: <Register /> },
-        { path: "login", element: <Login /> },
-        { path: "logout", element: <Logout /> },
-        { path: "authors", element: <Authors /> },
-        { path: "create", element: <CreatePost /> },
-        { path: "profile/:id", element: <UserProfile /> },
-        { path: "posts/:id/edit", element: <EditPost /> },
-        { path: "myposts:id", element: <DashBoard /> },
-        { path: "posts/categories/:category", element: <CategoryPosts /> },
-        { path: "posts/users/:id", element: <AuthorPosts /> },
+        {
+          index: true,
+          element: <Home />
+        },
+        {
+          path: "posts/:id",
+          element: <PostDetails />
+        },
+        {
+          path: "register",
+          element: <Register />
+        },
+        {
+          path: "login",
+          element: <Login />
+        },
+        {
+          path: "logout",
+          element: <Logout />
+        },
+        {
+          path: "authors",
+          element: <Authors />
+        },
+        {
+          path: "create",
+          element: <CreatePost />
+        },
+        {
+          path: "profile/:id",
+          element: <UserProfile />
+        },
+        {
+          path: "posts/:id/edit",
+          element: <EditPost />
+        },
+        {
+          path: "myposts:id",
+          element: <DashBoard />
+        },
+        {
+          path: "posts/categories/:category",
+          element: <CategoryPosts />
+        },
+        {
+          path: "posts/users/:id",
+          element: <AuthorPosts />
+        },
       ],
     },
   ]);
