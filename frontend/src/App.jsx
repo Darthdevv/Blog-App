@@ -25,51 +25,55 @@ function App() {
       children: [
         {
           index: true,
-          element: <Home />
+          element: <Home />,
         },
         {
           path: "posts/:id",
-          element: <PostDetails />
+          element: <PostDetails />,
         },
         {
           path: "register",
-          element: <Register />
+          element: <Register />,
         },
         {
           path: "login",
-          element: <Login />
+          element: <Login />,
         },
         {
           path: "logout",
-          element: <Logout />
+          element: <Logout />,
         },
         {
           path: "authors",
-          element: <Authors />
+          element: <Authors />,
         },
         {
           path: "create",
-          element: <CreatePost />
+          element: <CreatePost />,
         },
         {
           path: "profile/:id",
-          element: <UserProfile />
+          element: <UserProfile />,
         },
         {
           path: "posts/:id/edit",
-          element: <EditPost />
+          element: <EditPost />,
         },
         {
           path: "myposts:id",
-          element: <DashBoard />
+          element: <DashBoard />,
         },
         {
           path: "posts/categories/:category",
-          element: <CategoryPosts />
+          element: <CategoryPosts />,
         },
         {
           path: "posts/users/:id",
-          element: <AuthorPosts />
+          element: <AuthorPosts />,
+        },
+        {
+          path: "*",
+          element: <Error />,
         },
       ],
     },

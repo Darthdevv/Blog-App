@@ -1,8 +1,8 @@
-
+import { Link } from 'react-router-dom'
+import Logo from '../../images/logoipsum-249.svg'
 
 const Header = () => {
   return (
-    <div>
       <div className="navbar bg-[#0E1217]">
         <div className="navbar-start">
           <div className="dropdown">
@@ -43,7 +43,9 @@ const Header = () => {
           </div>
         </div>
         <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to={'/'} className="btn btn-ghost text-xl">
+          <img src={Logo} alt="logo" />
+          </Link>
         </div>
         <div className="navbar-end">
           <button className="btn btn-ghost btn-circle">
@@ -83,7 +85,6 @@ const Header = () => {
           </button>
         </div>
       </div>
-    </div>
   );
 }
 
