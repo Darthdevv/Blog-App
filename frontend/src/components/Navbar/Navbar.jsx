@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import Logo from '../../images/logoipsum-249.svg'
 
-const Header = () => {
+const Navbar = () => {
   return (
-      <div className="navbar bg-[#0E1217]">
+      <nav className="navbar bg-[#0E1217]">
         <div className="navbar-start">
           <div className="dropdown">
             <div
@@ -84,8 +84,8 @@ const Header = () => {
             </div>
           </button>
         </div>
-      </div>
+      </nav>
   );
 }
 
-export default Header
+export default Navbar
