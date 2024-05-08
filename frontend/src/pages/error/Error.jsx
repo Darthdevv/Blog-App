@@ -1,10 +1,13 @@
-
+import BackHome from "../../components/Button/BackHome";
 
 const Error = () => {
   return (
-    <div className="hero min-h-screen bg-[#0E1217]">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
+    <div className="w-full relative flex items-center justify-center min-h-screen bg-[#0E1217] ">
+      <div className="absolute top-5 left-5">
+        <BackHome />
+      </div>
+      <div className="max-w-fit mx-auto text-center">
+        <div className="max-w-fit">
           <button className="">
             <svg
               xmlns="http://www.w3.org/2000/svg"
