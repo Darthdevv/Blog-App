@@ -8,3 +8,33 @@ body{
     font-family: "Lato", "sans-serif";
 }
 
+.logo{
+  display: inline-flex;
+  height: 3rem/* 48px */;
+  min-height: 3rem/* 48px */;
+  flex-shrink: 0;
+  cursor: pointer;
+  user-select: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--rounded-btn, 0.5rem/* 8px */);
+  border-color: transparent;
+  padding-left: 1rem/* 16px */;
+  padding-right: 1rem/* 16px */;
+  text-align: center;
+  font-size: 0.875rem/* 14px */;
+  line-height: 1em;
+  gap: 0.5rem/* 8px */;
+  font-weight: 600;
+  background-color: transparent;
+}
+
+.logo:hover{
+  background-color: transparent;
+  border: 1px solid transparent;
+}

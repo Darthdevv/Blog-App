@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav className="navbar bg-[#0E1217] border border-[#2D323C]">
       <div className="navbar-start">
-        <Link to={"/"} className="btn btn-ghost text-xl">
+        <Link to={"/"} className="logo btn text-xl">
           <img src={Logo} alt="logo" />
         </Link>
       </div>

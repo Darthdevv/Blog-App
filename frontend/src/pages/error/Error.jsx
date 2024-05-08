@@ -2,7 +2,7 @@ import BackHome from "../../components/Button/BackHome";
 
 const Error = () => {
   return (
-    <div className="w-full relative flex items-center justify-center min-h-screen bg-[#0E1217] ">
+    <div className="w-full relative flex items-center justify-center min-h-screen bg-[#0E1217] border border-[#2D323C] ">
       <div className="absolute top-5 left-5">
         <BackHome />
       </div>
