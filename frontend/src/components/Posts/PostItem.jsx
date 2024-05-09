@@ -9,7 +9,7 @@ const PostItem = ({post}) => {
       <div className="card-body">
         <h2 className="card-title">
           Shoes!
-          <div className="badge badge-secondary">NEW</div>
+          <div className="badge badge-primary">NEW</div>
         </h2>
         <p>If a dog chews shoes whose shoes does he choose?</p>
         <div className="card-actions justify-end">
