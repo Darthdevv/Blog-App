@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import PostItem from './PostItem';
 import Thumbnail1 from '../../images///blog97.jpg';
 import Thumbnail2 from '../../images///blog55.jpg';
 import Thumbnail3 from '../../images///blog26.jpg';
@@ -40,8 +41,13 @@ const postData = [
 ];
 
 const Posts = () => {
+  const [posts , setPosts] = useState(postData)
   return (
-    <div>Posts</div>
+    <div className=' max-w-[1100px] mx-auto py-20 flex items-start justify-start max-lg:items-center max-lg:justify-center flex-wrap gap-y-8'>
+      {posts.map((post) => (
+        <PostItem key={post.id} post={post } />
+        ))}
+    </div>
   )
 }
 

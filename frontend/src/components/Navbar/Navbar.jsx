@@ -3,7 +3,7 @@ import Logo from '../../images/logoipsum-249.svg'
 
 const Navbar = () => {
   return (
-    <nav className="navbar bg-[#0E1217] border border-[#2D323C]">
+    <nav className=" navbar bg-[#0E1217] border border-[#2D323C]">
       <div className="navbar-start">
         <Link to={"/"} className="logo btn text-xl">
           <img src={Logo} alt="logo" />
