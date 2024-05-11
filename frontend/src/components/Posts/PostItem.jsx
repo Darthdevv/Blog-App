@@ -13,7 +13,7 @@ const PostItem = ({ post }) => {
         <img src={thumbnail} alt="Shoes" className=" rounded-xl" />
       </figure>
       <div className="card-body">
-        <Link to={`/posts/${id}`}>
+        <Link to={`details/posts/${id}`}>
           <h2 className="card-title text-white">
             {adjustedTitle}
             {/* <div className="badge badge-primary">NEW</div> */}

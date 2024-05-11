@@ -14,6 +14,7 @@ import DashBoard from './pages/dashboard/DashBoard'
 import CategoryPosts from './pages/post/CategoryPosts'
 import AuthorPosts from './pages/post/AuthorPosts'
 import Logout from './pages/logout/Logout'
+import SecondaryLayout from './layouts/SecondaryLayout'
 
 function App() {
 
@@ -27,10 +28,10 @@ function App() {
           index: true,
           element: <Home />,
         },
-        {
-          path: "posts/:id",
-          element: <PostDetails />,
-        },
+        // {
+        //   path: "posts/:id",
+        //   element: <PostDetails />,
+        // },
         {
           path: "register",
           element: <Register />,
@@ -77,6 +78,17 @@ function App() {
         },
       ],
     },
+    {
+      path: "details",
+      element: <SecondaryLayout />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: 'posts/:id',
+          element: <PostDetails />,
+        },
+      ]
+    }
   ]);
 
   return (
