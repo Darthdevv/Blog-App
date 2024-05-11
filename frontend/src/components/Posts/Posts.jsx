@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import PostItem from './PostItem';
 import Thumbnail1 from '../../images///blog97.jpg';
-import Thumbnail2 from '../../images///blog55.jpg';
-import Thumbnail3 from '../../images///blog26.jpg';
+import Thumbnail2 from '../../images///blog53.jpg';
+import Thumbnail3 from '../../images///blog17.jpg';
 import Thumbnail4 from '../../images///blog16.jpg';
 
 const postData = [
@@ -10,8 +10,8 @@ const postData = [
     id: "1",
     thumbnail: Thumbnail1,
     category: "education",
-    title: "This is a title of the very first blog",
-    desc: "lorem ipsum dolor sit amet, con",
+    title: "Troubles facing students",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit est ti pas dolor.",
     authorID: 1,
   },
   {
@@ -19,7 +19,7 @@ const postData = [
     thumbnail: Thumbnail2,
     category: "science",
     title: "This is a title of the very second blog",
-    desc: "lorem ipsum dolor sit amet, con",
+    desc: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita necessitatibus voluptates quam iusto officia architecto totam dolores magni quasi quas eum molestias sequi cum.',
     authorID: 2,
   },
   {
@@ -27,15 +27,15 @@ const postData = [
     thumbnail: Thumbnail3,
     category: "art",
     title: "This is a title of the very third blog",
-    desc: "lorem ipsum dolor sit amet, con",
+    desc: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe reprehenderit ut consequatur nihil quasi reiciendis eum repellat libero!',
     authorID: 3,
   },
   {
     id: "4",
     thumbnail: Thumbnail4,
-    category: "agriculture",
-    title: "This is a title of the very fourth blog",
-    desc: "lorem ipsum dolor sit amet, con",
+    category: "business",
+    title: "How to start a buisness",
+    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. ",
     authorID: 4,
   },
 ];

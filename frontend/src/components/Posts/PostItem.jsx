@@ -1,20 +1,32 @@
 import React from 'react'
+import AuthorPosts from '../../pages/post/AuthorPosts';
+import {Link} from 'react-router-dom'
+import CustomButton from '../Button/CustomButton';
 
-const PostItem = ({post}) => {
+const PostItem = ({ post }) => {
+  const { id, thumbnail, category, title, desc, authorID } = post
+  const adjustedTitle = title.length > 30 ? title.substr(0, 30) + '...' : title;
+  const adjustedDesc = desc.length > 85 ? desc.substr(0, 85) + "..." : desc;
   return (
-    <div className="card w-[20rem] mx-4 shadow-xl bg-[#1D1F26] border border-[#2D323C]">
+    <div className="card w-[20rem] mx-4 shadow-xl bg-[rgb(29,31,38)] border border-[#2D323C] hover:border-[#545A69]">
       <figure className="p-3 rounded-xl">
-        <img src={post.thumbnail} alt="Shoes" className=" rounded-xl" />
+        <img src={thumbnail} alt="Shoes" className=" rounded-xl" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">
-          Shoes!
-          <div className="badge badge-primary">NEW</div>
-        </h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
-        <div className="card-actions justify-end">
-          <div className="badge badge-outline">Fashion</div>
-          <div className="badge badge-outline">Products</div>
+        <Link to={`/posts/${id}`}>
+          <h2 className="card-title text-white">
+            {adjustedTitle}
+            {/* <div className="badge badge-primary">NEW</div> */}
+          </h2>
+        </Link>
+        <p>{adjustedDesc}</p>
+        <div className="w-full mt-5 flex items-center justify-between">
+          <AuthorPosts />
+          <Link to={`/posts/categories/${category}`}>
+            <CustomButton padX={"px-[20px]"} padY={"py-[2px]"}>
+              {category}
+            </CustomButton>
+          </Link>
         </div>
       </div>
     </div>
