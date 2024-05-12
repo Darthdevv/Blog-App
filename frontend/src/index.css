@@ -199,3 +199,26 @@ body{
   overflow: hidden;
   border-radius: 8px;
 }
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: transparent;
+    border-left: 2px solid transparent;
+    box-shadow: 0px 0px 21px 0px #5045e42d inset;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000;
+    box-shadow: 0px 0px 10px 0px #545A69 inset;
+    border-radius: 8px;
+}
+
+::selection {
+    background-color: #5045e42d;
+    opacity: 0.2;
+    color: #A6ADBB;
+}
