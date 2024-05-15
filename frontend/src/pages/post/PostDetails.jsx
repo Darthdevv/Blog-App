@@ -1,7 +1,6 @@
 import Thumbnail from '../../images/blog17.jpg'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import AuthorPosts from './AuthorPosts';
-import BackHome from '../../components/Button/BackHome';
+import PostAuthor from '../../components/Posts/PostAuthor';
 import { AiOutlineClose } from "react-icons/ai";
 
 
@@ -13,7 +12,7 @@ const PostDetails = () => {
         <div className="max-w-full">
           <div className="card max-w-[800px]  bg-[#0E1217] border border-[#545A69] hover:border-[#545A69] shadow-xl">
             <div className=" py-5 px-10 flex items-start justify-between">
-              <AuthorPosts />
+              <PostAuthor/>
               <div className='flex items-center justify-between gap-2'>
                 <Link to={'/posts/werwer/edit'}><button className='btn btn-ghost'>Edit</button></Link>
                 <Link to={'/posts/werwer/delete'}><button className='btn btn-ghost'>Delete</button></Link>

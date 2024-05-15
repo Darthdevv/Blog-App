@@ -1,5 +1,5 @@
 import React from 'react'
-import AuthorPosts from '../../pages/post/AuthorPosts';
+import PostAuthor from './PostAuthor';
 import {Link} from 'react-router-dom'
 import CustomButton from '../Button/CustomButton';
 
@@ -21,7 +21,7 @@ const PostItem = ({ post }) => {
         </Link>
         <p>{adjustedDesc}</p>
         <div className="w-full mt-5 flex items-center justify-between">
-          <AuthorPosts />
+          <PostAuthor />
           <Link to={`/posts/categories/${category}`}>
             <CustomButton padX={"px-[20px]"} padY={"py-[2px]"}>
               {category}
