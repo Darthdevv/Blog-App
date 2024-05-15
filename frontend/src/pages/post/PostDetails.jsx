@@ -3,7 +3,6 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import PostAuthor from '../../components/Posts/PostAuthor';
 import { AiOutlineClose } from "react-icons/ai";
 
-
 const PostDetails = () => {
   const navigate = useNavigate();
   return (
