@@ -1,6 +1,9 @@
-
+import { useNavigate } from "react-router";
 
 const Login = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="hero min-h-screen bg-[#0E1217]">
       <div className="hero-content text-center">
@@ -21,6 +24,11 @@ const Login = () => {
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
+                  <label className="label">
+                    <a href="#" className="label-text-alt link link-hover">
+                      Forgot password?
+                    </a>
+                  </label>
                 </label>
                 <input
                   type="password"
@@ -28,9 +36,10 @@ const Login = () => {
                   className="input input-bordered"
                   required
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
+                <label className="label text-sm">
+                  Don't have an account ?
+                  <a onClick={() => navigate('/register')} className="label-text-alt ml-2 mr-auto link link-hover">
+                    Register
                   </a>
                 </label>
               </div>
