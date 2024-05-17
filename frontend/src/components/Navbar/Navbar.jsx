@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="navbar-end max-md:hidden">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to={"/profile"}>Yousef Elgohary</Link>
+            <Link to={"/profile/yousef"}>Yousef Elgohary</Link>
           </li>
           <li>
             <Link to={"/create"}>Create Post</Link>

@@ -55,6 +55,10 @@ const Register = () => {
         <div className="max-w-full">
           <div className=" bg-[#1D1F25] border border-[#545A69] card w-[600px] max-lg:w-[500px]  max-sm:w-[300px] shadow-2xl">
             <form onSubmit={handleSubmit} className="card-body w-full">
+              <h1 className=" text-white font-bold text-2xl">
+                Create an <span className="text-[#4F45E4] ml-1">Ink</span>
+                <span className="text-[#A5B4FB] mr-1">Well</span>
+              </h1>
               <div className="form-control">
                 <label htmlFor="Name" className="label">
                   <span className="label-text">Name</span>

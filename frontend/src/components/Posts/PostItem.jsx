@@ -8,7 +8,7 @@ const PostItem = ({ post }) => {
   const adjustedTitle = title.length > 30 ? title.substr(0, 30) + '...' : title;
   const adjustedDesc = desc.length > 85 ? desc.substr(0, 85) + "..." : desc;
   return (
-    <div className="card w-[20rem] mx-4 shadow-xl bg-[rgb(29,31,38)] border border-[#2D323C] hover:border-[#545A69]">
+    <div className="card w-[20rem] mx-4 shadow-xl bg-[#1d1f26] border border-[#2D323C] hover:border-[#545A69]">
       <figure className="p-3 rounded-xl">
         <img src={thumbnail} alt="Shoes" className=" rounded-xl" />
       </figure>

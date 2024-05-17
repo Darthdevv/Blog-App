@@ -391,3 +391,16 @@ input.input-error,
 select.input-error{
     border-color: #fc8181;
 }
+
+.stat-figure {
+  grid-column-start: 1;
+  grid-row: span 3 / span 3;
+  grid-row-start: 1;
+  place-self: center;
+  justify-self: center;
+}
+
+
+
+
+
