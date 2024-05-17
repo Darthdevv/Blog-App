@@ -22,6 +22,9 @@ const UserProfile = () => {
                 </label>
             </div>
           </div>
+
+          <h1 className='text-white text-2xl mt-5'>Yousef Elgohary</h1>
+
           <div className="card shrink-0 lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl bg-transparent">
             <form className="card-body">
               <div className="form-control">
