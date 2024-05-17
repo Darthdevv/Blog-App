@@ -1,29 +1,39 @@
 import { useState } from 'react';
 import Avatar from '../../images/avatar2.jpg'
 import { FaEdit } from "react-icons/fa";
+import BackTo from '../../components/Button/BackHome';
 
 const UserProfile = () => {
 
   const [avatar, setAvatar] = useState('');
 
   return (
-    <div className="hero min-h-screen bg-[#0E1217]">
+    <div className="hero min-h-screen relative bg-[#0E1217]">
+      <div className="absolute top-5 left-5">
+        <BackTo children={"View Posts"} to={"/myposts:id"} />
+      </div>
       <div className="hero-content text-center">
         <div className="max-w-full">
           <div className="avatar">
             <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <img src={Avatar} className="relative" />
-              <input type="file" id="edit-btn" accept='jpg, png, jpeg' onChange={e => setAvatar(e.target.value[0])} hidden />
-                <label
-                  htmlFor="edit-btn"
-                  className=" absolute bottom-1 right-[-18px] btn btn-circle btn-ghost"
-                >
-                  <FaEdit color='white' />
-                </label>
+              <input
+                type="file"
+                id="edit-btn"
+                accept="jpg, png, jpeg"
+                onChange={(e) => setAvatar(e.target.value[0])}
+                hidden
+              />
+              <label
+                htmlFor="edit-btn"
+                className=" absolute bottom-1 right-[-18px] btn btn-circle btn-ghost"
+              >
+                <FaEdit color="white" />
+              </label>
             </div>
           </div>
 
-          <h1 className='text-white text-2xl mt-5'>Yousef Elgohary</h1>
+          <h1 className="text-white text-2xl mt-5">Yousef Elgohary</h1>
 
           <div className="card shrink-0 lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl bg-transparent">
             <form className="card-body">
