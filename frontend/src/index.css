@@ -400,7 +400,33 @@ select.input-error{
   justify-self: center;
 }
 
+.btn-custom{
+  background-color: #5045e42d;
+}
 
+.btn-custom:hover{
+  background-color: #4F45E4;
+  color: #A4B4FB;
+}
+
+.btn-red{
+  background-color: rgba(255, 0, 0, 0.313);
+}
+
+.btn-red:hover{
+  background-color: rgba(255, 0, 0, 0.843);
+}
+
+
+.btn-blanche{
+  background-color: #ffffff73;
+  color: #0F1218;
+}
+
+.btn-blanche:hover{
+  background-color: hsla(0, 0%, 100%, 0.843);
+  color: #0F1218;
+}
 
 
 

@@ -15,6 +15,7 @@ import CategoryPosts from './pages/post/CategoryPosts'
 import AuthorPosts from './pages/post/AuthorPosts'
 import Logout from './pages/logout/Logout'
 import SecondaryLayout from './layouts/SecondaryLayout'
+import DeletePost from './pages/post/DeletePost'
 
 function App() {
 
@@ -61,6 +62,10 @@ function App() {
           element: <EditPost />,
         },
         {
+          path: "posts/:id/delete",
+          element: <DeletePost />,
+        },
+        {
           path: "myposts:id",
           element: <DashBoard />,
         },
@@ -84,11 +89,11 @@ function App() {
       errorElement: <Error />,
       children: [
         {
-          path: 'posts/:id',
+          path: "posts/:id",
           element: <PostDetails />,
         },
-      ]
-    }
+      ],
+    },
   ]);
 
   return (
