@@ -50,7 +50,7 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#0E1217] border border-[#2D323C] rounded-box w-52"
           >
             <li>
-              <Link to={"/profile"}>Yousef Elgohary</Link>
+              <Link to={"/profile/yousef"}>Yousef Elgohary</Link>
             </li>
             <li>
               <Link to={"/create"}>Create Post</Link>

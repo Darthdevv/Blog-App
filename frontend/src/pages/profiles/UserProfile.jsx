@@ -12,7 +12,7 @@ const UserProfile = () => {
       <div className="absolute top-5 left-5">
         <BackTo children={"View Posts"} to={"/myposts:id"} />
       </div>
-      <div className="w-full grid place-items-center">
+      <div className="w-full grid place-items-center my-20">
         <div className=" w-full grid place-items-center">
           <div className="avatar">
             <div className="w-32 rounded-full ring ring-[#4F45E4] ring-offset-base-100 ring-offset-2">
@@ -83,7 +83,7 @@ const UserProfile = () => {
               </div>
 
               <div className="form-control mt-6 mx-auto">
-                <button className="btn hover:bg-[#A5B4FB] hover:text-[#4F45E4] bg-[#4F45E4] text-[#A5B4FB] w-[200px]">
+                <button type='submit' className="btn hover:bg-[#A5B4FB] hover:text-[#4F45E4] bg-[#4F45E4] text-[#A5B4FB] w-[200px]">
                   Update <span className="mr-2">Details</span>
                 </button>
               </div>

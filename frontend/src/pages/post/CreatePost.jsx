@@ -18,7 +18,7 @@ const CreatePost = () => {
         <div className="w-full grid place-items-center">
           <h1 className="text-center text-white text-2xl">Create Post</h1>
 
-          <div className="card shrink-0 w-full max-w-sm  bg-transparent">
+          <div className="card  w-full lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl  bg-transparent">
             <form className="card-body">
               <p className="self-start">this is an error message</p>
 
@@ -37,7 +37,7 @@ const CreatePost = () => {
                 name="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="select select-bordered w-full max-w-xs"
+                className="select select-bordered w-full "
               >
                 {postCategories.map((category) => (
                   <option key={category}>{category}</option>
@@ -53,13 +53,16 @@ const CreatePost = () => {
 
               <input
                 type="file"
-                className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+                className="file-input file-input-bordered file-input-primary w-full "
                 onChange={(e) => setThumbnail(e.target.files[0])}
                 accept="png, jpg, jpeg"
               />
 
-              <div className="form-control mt-6">
-                <button type="submit" className="btn btn-primary">
+              <div className="form-control mt-6 mx-auto">
+                <button
+                  type="submit"
+                  className="btn hover:bg-[#A5B4FB] hover:text-[#4F45E4] bg-[#4F45E4] text-[#A5B4FB] w-[200px]"
+                >
                   Create
                 </button>
               </div>
