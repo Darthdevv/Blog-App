@@ -12,10 +12,10 @@ const UserProfile = () => {
       <div className="absolute top-5 left-5">
         <BackTo children={"View Posts"} to={"/myposts:id"} />
       </div>
-      <div className="hero-content text-center">
-        <div className="max-w-full">
+      <div className="w-full grid place-items-center">
+        <div className=" w-full grid place-items-center">
           <div className="avatar">
-            <div className="w-32 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <div className="w-32 rounded-full ring ring-[#4F45E4] ring-offset-base-100 ring-offset-2">
               <img src={Avatar} className="relative" />
               <input
                 type="file"
@@ -26,7 +26,7 @@ const UserProfile = () => {
               />
               <label
                 htmlFor="edit-btn"
-                className=" absolute bottom-1 right-[-18px] btn btn-circle btn-ghost"
+                className=" absolute bottom-1 right-[-18px] btn btn-circle btn-custom border-none"
               >
                 <FaEdit color="white" />
               </label>
@@ -35,7 +35,7 @@ const UserProfile = () => {
 
           <h1 className="text-white text-2xl mt-5">Yousef Elgohary</h1>
 
-          <div className="card shrink-0 lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl bg-transparent">
+          <div className="card w-full lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl bg-transparent">
             <form className="card-body">
               <div className="form-control">
                 <input
