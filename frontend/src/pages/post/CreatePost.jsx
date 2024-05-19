@@ -13,14 +13,14 @@ const CreatePost = () => {
 
 
   return (
-    <div className="hero min-h-screen bg-[#0E1217]">
+    <div className="hero min-h-screen my-20 bg-[#0E1217]">
       <div className="w-full grid place-items-center">
         <div className="w-full grid place-items-center">
           <h1 className="text-center text-white text-2xl">Create Post</h1>
 
           <div className="card  w-full lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl  bg-transparent">
             <form className="card-body">
-              <p className="self-start">this is an error message</p>
+              <p className="self-start error hidden">this is an error message</p>
 
               <div className="form-control">
                 <input
