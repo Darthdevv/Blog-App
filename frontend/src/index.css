@@ -223,7 +223,7 @@ body{
     color: #A6ADBB;
 }
 
-.input {
+.input,.select {
   flex-shrink: 1;
   appearance: none;
   height: 3rem/* 48px */;

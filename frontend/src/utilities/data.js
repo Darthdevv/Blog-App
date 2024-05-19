@@ -75,3 +75,19 @@ export const authorData = [
     posts: 1,
   },
 ];
+
+export const postCategories = ["Agriculture", "Business", "Education", "Art", "Entertainment", "Investment", "Uncategorized", "Weather"];
+
+
+export const formats = ['header', 'bold', 'italic', 'underline', 'strike', 'blockquote', 'list', 'bullet', 'indent', 'link', 'image'];
+
+
+export const modules = {
+  toolbar: [
+    [{ header: [1, 2, false] }],
+    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'indent': '-1' }, { 'indent': '+1' }],
+    ['link', 'image'],
+    ['clean']
+  ],
+};
