@@ -1,12 +1,13 @@
+import appError from "../utilities/appError.js";
+
 // Unsupported 404 routes
-const notFound = (req, res, next) => {
-  const error = new Error(` Not found - ${req.originalUrl}`);
-  next(error);
+export const notFound = (req, res, next) => {
+    next(new appError(`Can't find ${req.originalUrl} on this server`, 400));
 }
 
 
 // Global Error Handling Middleware
-const errorMiddleware = (err, req, res, next) => {
+export const errorHandler = (err, req, res, next) => {
   if (req.headerSent) {
     return next(err);
   }
