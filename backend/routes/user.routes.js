@@ -7,7 +7,7 @@ router.route("/:id").get(getUser);
 router.route("/login").post(loginUser);
 router.route("/register").post(registerUser);
 router.route("/change-avatar").post(changeAvatar);
-router.route("/edit-user").post(editUser);
+router.route("/edit-user").patch(editUser);
 
 
 export default router;
