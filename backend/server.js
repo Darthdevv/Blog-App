@@ -1,4 +1,5 @@
 import path from 'path';
+import { fileURLToPath } from "url";
 import express from 'express';
 import cors from 'cors';
 import connectToMongoDB from './database/connectToMongoDB.js';
@@ -7,7 +8,8 @@ import upload from 'express-fileupload';
 import userRoutes from './routes/user.routes.js';
 import { errorHandler, notFound } from './middlewares/error.middleware.js';
 
-const __dirname = path.resolve();
+// export const __dirname = path.resolve();
+export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
