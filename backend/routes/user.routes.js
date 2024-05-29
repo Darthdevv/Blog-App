@@ -8,7 +8,7 @@ router.route("/:id").get(getUser);
 router.route("/login").post(loginUser);
 router.route("/register").post(registerUser);
 router.route("/change-avatar").post(authHandler,changeAvatar);
-router.route("/edit-user").patch(editUser);
+router.route("/edit-user").patch(authHandler, editUser);
 
 
 export default router;

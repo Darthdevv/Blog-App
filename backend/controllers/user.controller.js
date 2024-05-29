@@ -7,6 +7,7 @@ import jwt from "jsonwebtoken";
 import { v4 as uuidv4 } from "uuid";
 import { __dirname } from "../server.js";
 
+
 export const registerUser = async (req, res, next) => {
   try {
     const { name, email, password, password2 } = req.body;
@@ -45,6 +46,7 @@ export const registerUser = async (req, res, next) => {
   }
 };
 
+
 export const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -80,6 +82,7 @@ export const loginUser = async (req, res, next) => {
   }
 };
 
+
 export const getUsers = async (req, res, next) => {
   try {
     const users = await User.find().select("-password");
@@ -89,6 +92,7 @@ export const getUsers = async (req, res, next) => {
     return next(new appError(error));
   }
 };
+
 
 export const getUser = async (req, res, next) => {
   try {
@@ -105,56 +109,6 @@ export const getUser = async (req, res, next) => {
     return next(new appError(error));
   }
 };
-
-// export const changeAvatar = async (req, res, next) => {
-//   try {
-//     if (!req.files.avatar) {
-//       return next(new appError("Please choose an image.", 422));
-//     }
-
-//     //find user from database
-//     const user = await User.findById(req.user.id);
-
-//     //delete user avatar if it exists
-//     if (user.avatar) {
-//       fs.unlink(path.join(__dirname, '..', 'uploads', user.avatar), () => {
-//         if (err) {
-//           return next(new appError(err))
-//         }
-//       })
-//     }
-
-//     const { avatar } = req.files;
-
-//     //check file size
-//     if (avatar.size > 500000) {
-//       return next(new appError("Profile picture is too big, should be less than 500kb", 422))
-//     }
-
-//     let fileName;
-//     fileName = avatar.name;
-//     let splittedFileName = fileName.split('.');
-//     let newFileName = splittedFileName[0] + uuidv4() + '.' + splittedFileName[splittedFileName.length - 1];
-
-//     avatar.mv(path.join(__dirname, '..', 'uploads', newFileName),  async (err) => {
-//       if (err) {
-//         return next(new appError(err))
-//       }
-
-//       const updatedAvatar = await User.findByIdAndUpdate(req.user.id, { avatar: newFileName }, { new: true });
-
-//       if (!updatedAvatar) {
-//         return next(new appError("Avatar couldn't be changed.", 422));
-//       }
-
-//       res.status(200).json(updatedAvatar);
-//     })
-
-
-//   } catch (error) {
-//     return next(new appError(error));
-//   }
-// };
 
 
 export const changeAvatar = async (req, res, next) => {
@@ -221,6 +175,48 @@ export const changeAvatar = async (req, res, next) => {
   }
 };
 
-export const editUser = (req, res) => {
-  res.status(200).json("the user has been updated");
+
+export const editUser = async (req, res, next) => {
+  try {
+    const { name, email, currentPassword, newPassword, confirmNewPassword } = req.body;
+
+    if (!name || !email || !currentPassword || !newPassword) {
+      return next(new appError("Fill in all fields.", 422));
+    }
+
+    //get user from database
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return next(new appError("User not found.", 403));
+    }
+
+    //make sure that the email does not already exist
+    const emailExists = await User.findOne({ email });
+
+    if (emailExists && emailExists._id != req.user.id) {
+      return next(new appError("Email already exists.", 422));
+    }
+    //compare current password to database password
+    const validateUserPassword = await bcrypt.compare(currentPassword, user.password);
+    if (!validateUserPassword) {
+      return next(new appError("Invalid current password.", 422));
+    }
+
+    //compare new passwords
+    if (newPassword != confirmNewPassword) {
+      return next(new appError("New Passwords do not match.", 422));
+    }
+
+    //hash new password
+    const salt = await bcrypt.genSalt(10);
+    const newHashedPassword = await bcrypt.hash(newPassword, salt);
+
+    //update user info on database
+    const updatedUser = await User.findByIdAndUpdate(req.user.id, { name, email, password: newHashedPassword }, { new: true });
+
+    res.status(200).send(updatedUser);
+
+  } catch (error) {
+    return next(new appError(error));
+  }
 };
