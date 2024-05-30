@@ -6,6 +6,7 @@ import connectToMongoDB from './database/connectToMongoDB.js';
 import dotenv from 'dotenv';
 import upload from 'express-fileupload';
 import userRoutes from './routes/user.routes.js';
+import postRoutes from './routes/post.routes.js'
 import { errorHandler, notFound } from './middlewares/error.middleware.js';
 
 // export const __dirname = path.resolve();
@@ -20,7 +21,8 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 
-app.use('/api/users', userRoutes)
+app.use('/api/users', userRoutes);
+app.use('/api/posts', postRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
