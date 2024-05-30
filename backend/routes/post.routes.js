@@ -4,8 +4,8 @@ import authHandler from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.route("/").get(getPosts).post(createPost);
-router.route("/:id").get(getPost).patch( editPost).delete( deletePost);
+router.route("/").get(getPosts).post(authHandler,createPost);
+router.route("/:id").get(getPost).patch(authHandler, editPost).delete(authHandler, deletePost);
 router.route("/categories/:category").get(getPostsByCategory);
 router.route("/users/:id").get(getUserPosts);
 
