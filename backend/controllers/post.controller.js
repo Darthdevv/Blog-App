@@ -8,11 +8,29 @@ import { __dirname } from "../server.js";
 
 
 export const getPost = async (req, res, next) => {
-  res.status(200).json("this is the post");
+  try {
+    const { id } = req.params;
+
+    const post = await Post.findById(id);
+
+    if (!post) {
+      return next(new appError("Post not found.", 404));
+    }
+
+    res.status(200).json(post);
+  } catch (error) {
+    return next(new appError(error));
+  }
 };
 
 export const getPosts = async (req, res, next) => {
-  res.status(200).json("these are the posts");
+  try {
+      const posts = await Post.find().sort({updatedAt: -1});
+
+      res.status(200).json(posts);
+  } catch (error) {
+    return next(new appError(error));
+  }
 };
 
 export const editPost = async (req, res, next) => {
@@ -24,11 +42,27 @@ export const deletePost = async (req, res, next) => {
 };
 
 export const getUserPosts = async (req, res, next) => {
-  res.status(200).json("these are the posts of this user");
+  try {
+    const { id } = req.params;
+
+    const userPosts = await Post.findOne({ creator: id }).sort({ createdAt: -1 });
+
+    res.status(200).json(userPosts);
+  } catch (error) {
+    return next(new appError(error));
+  }
 };
 
 export const getPostsByCategory = async (req, res, next) => {
-  res.status(200).json("this is the post by this category");
+  try {
+    const { category } = req.params;
+
+    const postByCategory = await Post.findOne({ category }).sort({ createdAt: -1 });
+
+    res.status(200).json(postByCategory);
+  } catch (error) {
+    return next(new appError(error));
+  }
 };
 
 export const createPost = async (req, res, next) => {
