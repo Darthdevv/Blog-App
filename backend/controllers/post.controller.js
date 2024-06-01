@@ -170,7 +170,7 @@ export const deletePost = async (req, res, next) => {
       res.status(204).json(`Post ${id} deleted successfully`);
 
     } else {
-      return next(new appError("Post couldn't be deleted, 400"));
+      return next(new appError("Post couldn't be deleted", 400));
     }
   } catch (error) {
     return next(new appError(error));
