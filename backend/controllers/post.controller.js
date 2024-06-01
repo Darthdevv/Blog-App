@@ -115,7 +115,50 @@ export const editPost = async (req, res, next) => {
 };
 
 export const deletePost = async (req, res, next) => {
-  res.status(200).json("post deleted successfully");
+  try {
+    const { id } = req.params;
+
+    if (!id) {
+      return next(new appError("Post unavailable.", 400))
+    }
+
+    const post = await Post.findById(id);
+
+    const fileName = post?.thumbnail;
+
+    if (req.user.id == post.creator) {
+      //delete thumbnail from uploads folder
+        if (post && post.thumbnail) {
+          const thumbnailPath = path.join(
+            __dirname,
+            "uploads",
+            fileName
+          );
+          try {
+            if (fs.existsSync(thumbnailPath)) {
+              await fs.promises.unlink(thumbnailPath);
+            }
+          } catch (err) {
+            return next(
+              new appError("Failed to delete thumbnail.", 500)
+            );
+          }
+        }
+
+      await Post.findByIdAndDelete(id);
+      //find user and reduce user count by 1
+      const currentUser = await User.findById(req.user.id);
+      const userPostCount = currentUser?.posts - 1;
+      await User.findByIdAndUpdate(req.user.id, { posts: userPostCount });
+
+      res.status(204).json(`Post ${id} deleted successfully`);
+
+    } else {
+      return next(new appError("Post couldn't be deleted, 400"));
+    }
+  } catch (error) {
+    return next(new appError(error));
+  }
 };
 
 export const getUserPosts = async (req, res, next) => {
