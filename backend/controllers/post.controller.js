@@ -47,60 +47,77 @@ export const editPost = async (req, res, next) => {
       return next(new appError("Fill in all fields.", 422));
     }
 
-    if (!req.files) {
-      updatedPost = await Post.findByIdAndUpdate(id, { title, category, description }, { new: true });
-    } else {
-      //get old post from database
-      const oldPost = await Post.findById(id);
-      //delete old thumbnail from upload
-      if (oldPost && oldPost.thumbnail) {
-        const oldThumbnailPath = path.join(
+    //get old post from database
+    const oldPost = await Post.findById(id);
+
+    if (req.user.id == oldPost.creator) {
+      if (!req.files) {
+        updatedPost = await Post.findByIdAndUpdate(
+          id,
+          { title, category, description },
+          { new: true }
+        );
+      } else {
+        //delete old thumbnail from upload
+        if (oldPost && oldPost.thumbnail) {
+          const oldThumbnailPath = path.join(
+            __dirname,
+            "uploads",
+            oldPost.thumbnail
+          );
+          try {
+            if (fs.existsSync(oldThumbnailPath)) {
+              await fs.promises.unlink(oldThumbnailPath);
+            }
+          } catch (err) {
+            return next(
+              new appError("Failed to delete old thumbnail.", 500)
+            );
+          }
+        }
+
+        const { thumbnail } = req.files;
+
+        //check the file size
+        if (thumbnail.size > 2000000) {
+          // Limit to 2 MB
+          return next(
+            new appError(
+              "Thumbnail is too big, file should be less than 2mb",
+              422
+            )
+          );
+        }
+
+        const uploadsDir = path.join(__dirname, "uploads");
+        try {
+          await fs.promises.mkdir(uploadsDir, { recursive: true });
+        } catch (err) {
+          return next(
+            new appError("Failed to create directory for uploads.", 500)
+          );
+        }
+
+        extension = thumbnail.name.split(".").pop();
+        newFileName = `${uuidv4()}.${extension}`;
+        const newThumbnailPath = path.join(
           __dirname,
           "uploads",
-          oldPost.thumbnail
+          newFileName
         );
-        try {
-          if (fs.existsSync(oldThumbnailPath)) {
-            await fs.promises.unlink(oldThumbnailPath);
+
+        thumbnail.mv(newThumbnailPath, async (err) => {
+          if (err) {
+            return next(new appError("Error saving file.", 500));
           }
-        } catch (err) {
-          return next(new appError("Failed to delete old thumbnail.", 500));
-        }
-      }
+        });
 
-      const { thumbnail } = req.files;
-
-      //check the file size
-      if (thumbnail.size > 2000000) {
-        // Limit to 2 MB
-        return next(
-          new appError(
-            "Thumbnail is too big, file should be less than 2mb",
-            422
-          )
+        updatedPost = await Post.findByIdAndUpdate(
+          id,
+          { title, category, description, thumbnail: newFileName },
+          { new: true }
         );
       }
-
-      const uploadsDir = path.join(__dirname, "uploads");
-      try {
-        await fs.promises.mkdir(uploadsDir, { recursive: true });
-      } catch (err) {
-        return next(
-          new appError("Failed to create directory for uploads.", 500)
-        );
-      }
-
-      extension = thumbnail.name.split(".").pop();
-      newFileName = `${uuidv4()}.${extension}`;
-      const newThumbnailPath = path.join(__dirname, "uploads", newFileName);
-
-      thumbnail.mv(newThumbnailPath, async (err) => {
-        if (err) {
-          return next(new appError("Error saving file.", 500));
-        }
-      })
-
-      updatedPost = await Post.findByIdAndUpdate(id, { title, category, description, thumbnail: newFileName }, { new: true });
     }
 
     if (!updatedPost) {
@@ -108,7 +125,6 @@ export const editPost = async (req, res, next) => {
     }
 
     res.status(200).json(updatedPost);
-
   } catch (error) {
     return next(new appError(error));
   }
