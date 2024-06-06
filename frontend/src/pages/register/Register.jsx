@@ -2,11 +2,12 @@ import { useNavigate } from "react-router";
 import {useFormik} from 'formik'
 import { registerSchema } from "../../schemas";
 import { useState } from "react";
+import axios from 'axios';
 
 const Register = () => {
 
-    // const [errorMessage, setErrorMessage] = useState("");
-    // const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  // const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
@@ -21,33 +22,35 @@ const Register = () => {
       isValid,
     } = useFormik({
       initialValues: {
-        Name: "",
-        Email: "",
-        Password: "",
-        ConfirmPassword: "",
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
       },
       validationSchema: registerSchema,
       onSubmit: (values, actions) => {
-        console.log(values);
+        sendDataToApi(values);
         actions.resetForm();
       },
     });
 
-    // async function sendDataToApi(values) {
-    //   setLoading(true);
-    //   try {
-    //     let { data } = await axios.post(
-    //       "https://ecommerce.routemisr.com/api/v1/auth/signup",
-    //       values
-    //     );
-    //     if (data.message == "success") {
-    //       navigate("/login");
-    //     }
-    //   } catch (error) {
-    //     setLoading(false);
-    //     setErrorMessage(error.response.data.message);
-    //   }
-    // }
+    async function sendDataToApi(values) {
+      // setLoading(true);
+      try {
+        let response = await axios.post(
+          'http://localhost:5000/api/users/register',
+          values
+        );
+        const newUser = await response.data;
+        if (!newUser) {
+          setErrorMessage("Couldn't register user, Please try again.");
+        }
+        navigate("/");
+      } catch (error) {
+        // setLoading(false);
+        setErrorMessage(error.response.data.message);
+      }
+    }
 
   return (
     <div className="hero min-h-screen bg-[#0E1217]">
@@ -55,109 +58,111 @@ const Register = () => {
         <div className="max-w-full">
           <div className=" bg-[#1D1F25] border border-[#545A69] card w-[600px] max-lg:w-[500px]  max-sm:w-[300px] shadow-2xl">
             <form onSubmit={handleSubmit} className="card-body w-full">
-              <h1 className=" text-white font-bold text-2xl">
-                Create an <span className="text-[#4F45E4] ml-1">Ink</span>
-                <span className="text-[#A5B4FB] mr-1">Well</span>
+              <h1 className=" font-bold text-2xl">
+                Create an {"  "}
+                  <span className="logo-text ml-1">Inkify</span>
+                  <span className=" font-normal mr-1 text-sm">.blog</span>
+                {"  "} account
               </h1>
               <div className="form-control">
-                <label htmlFor="Name" className="label">
+                <label htmlFor="name" className="label">
                   <span className="label-text">Name</span>
                 </label>
                 <input
-                  id="Name"
-                  name="Name"
+                  id="name"
+                  name="name"
                   type="text"
                   placeholder="name"
-                  value={values.Name}
+                  value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.Name && touched.Name
+                    errors.name && touched.name
                       ? "input input-bordered input-error"
                       : "input input-bordered"
                   }
                 />
-                {errors.Name && touched.Name ? (
-                  <p className="error">{errors.Name}</p>
+                {errors.name && touched.name ? (
+                  <p className="error">{errors.name}</p>
                 ) : (
                   ""
                 )}
               </div>
 
               <div className="form-control">
-                <label htmlFor="Email" className="label">
+                <label htmlFor="email" className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  id="Email"
-                  name="Email"
+                  id="email"
+                  name="email"
                   type="email"
                   placeholder="email"
-                  value={values.Email}
+                  value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.Email && touched.Email
+                    errors.email && touched.email
                       ? "input input-bordered input-error"
                       : "input input-bordered"
                   }
                 />
-                {errors.Email && touched.Email ? (
-                  <p className="error">{errors.Email}</p>
+                {errors.email && touched.email ? (
+                  <p className="error">{errors.email}</p>
                 ) : (
                   ""
                 )}
               </div>
 
               <div className="form-control">
-                <label htmlFor="Password" className="label">
+                <label htmlFor="password" className="label">
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  id="Password"
-                  name="Password"
+                  id="password"
+                  name="password"
                   type="password"
                   placeholder="password"
-                  value={values.Password}
+                  value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.Password && touched.Password
+                    errors.password && touched.password
                       ? "input input-bordered input-error"
                       : "input input-bordered"
                   }
                 />
-                {errors.Password && touched.Password ? (
-                  <p className="error">{errors.Password}</p>
+                {errors.password && touched.password ? (
+                  <p className="error">{errors.password}</p>
                 ) : (
                   ""
                 )}
               </div>
 
               <div className="form-control">
-                <label htmlFor="ConfirmPassword" className="label">
+                <label htmlFor="confirmPassword" className="label">
                   <span className="label-text">Confirm Password</span>
                 </label>
                 <input
-                  id="ConfirmPassword"
-                  name="ConfirmPassword"
+                  id="confirmPassword"
+                  name="confirmPassword"
                   type="password"
                   placeholder="confirm password"
-                  value={values.ConfirmPassword}
+                  value={values.confirmPassword}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.ConfirmPassword && touched.ConfirmPassword
+                    errors.confirmPassword && touched.confirmPassword
                       ? "input input-bordered input-error"
                       : "input input-bordered"
                   }
                 />
-                {errors.ConfirmPassword && touched.ConfirmPassword ? (
-                  <p className="error">{errors.ConfirmPassword}</p>
+                {errors.confirmPassword && touched.confirmPassword ? (
+                  <p className="error">{errors.confirmPassword}</p>
                 ) : (
                   ""
                 )}
-                {/* {errorMessage ? <p className="error">{errorMessage}</p> : ""} */}
+                {errorMessage ? <p className="error">{errorMessage}</p> : ""}
                 <label className="label text-sm">
                   Already have an account ?
                   <a

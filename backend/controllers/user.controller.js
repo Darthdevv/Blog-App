@@ -10,7 +10,7 @@ import { __dirname } from "../server.js";
 
 export const registerUser = async (req, res, next) => {
   try {
-    const { name, email, password, password2 } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
     if (!name || !email || !password) {
       return next(new appError("Fill in all fields.", 422));
     }
@@ -27,7 +27,7 @@ export const registerUser = async (req, res, next) => {
       return next(new appError("Password must be at least 6 characters"), 422);
     }
 
-    if (password != password2) {
+    if (password != confirmPassword) {
       return next(new appError("Passwords do not match.", 422));
     }
 
