@@ -3,11 +3,12 @@ import {useFormik} from 'formik'
 import { registerSchema } from "../../schemas";
 import { useState } from "react";
 import axios from 'axios';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Register = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
 
@@ -29,13 +30,13 @@ const Register = () => {
       },
       validationSchema: registerSchema,
       onSubmit: (values, actions) => {
-        sendDataToApi(values);
+        registerUser(values);
         actions.resetForm();
       },
     });
 
-    async function sendDataToApi(values) {
-      // setLoading(true);
+    async function registerUser(values) {
+      setLoading(true);
       try {
         let response = await axios.post(
           'http://localhost:5000/api/users/register',
@@ -45,9 +46,9 @@ const Register = () => {
         if (!newUser) {
           setErrorMessage("Couldn't register user, Please try again.");
         }
-        navigate("/");
+        navigate("/login");
       } catch (error) {
-        // setLoading(false);
+        setLoading(false);
         setErrorMessage(error.response.data.message);
       }
     }
@@ -58,10 +59,12 @@ const Register = () => {
         <div className="max-w-full">
           <div className=" bg-[#1D1F25] border border-[#545A69] card w-[600px] max-lg:w-[500px]  max-sm:w-[300px] shadow-2xl">
             <form onSubmit={handleSubmit} className="card-body w-full">
-              <h1 className=" font-bold text-2xl">
+              <h1 className="text-white font-bold text-2xl">
                 Create an {"  "}
-                  <span className="logo-text ml-1">Inkify</span>
-                  <span className=" font-normal mr-1 text-sm">.blog</span>
+                <span className="logo-text ml-1">Inkify</span>
+                <span className="logo-header text-[#A5ADBB] font-normal mr-1 text-sm">
+                  .blog
+                </span>
                 {"  "} account
               </h1>
               <div className="form-control">
@@ -180,7 +183,11 @@ const Register = () => {
                   type="submit"
                   className="btn hover:bg-[#A5B4FB] hover:text-[#4F45E4] bg-[#4F45E4] text-[#A5B4FB]"
                 >
-                  Register
+                  {loading ? (
+                    <ClipLoader color="#4F45E4" size={20} />
+                  ) : (
+                    "Register"
+                  )}
                 </button>
               </div>
             </form>

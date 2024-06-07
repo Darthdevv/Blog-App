@@ -1,11 +1,14 @@
 import { useNavigate } from "react-router";
 import { loginSchema } from "../../schemas";
 import { useFormik } from "formik";
+import { useState } from "react";
+import axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Login = () => {
 
-  // const [errorMessage, setErrorMessage] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
       const {
@@ -19,32 +22,33 @@ const Login = () => {
         isValid,
       } = useFormik({
         initialValues: {
-          Email: "",
-          Password: "",
+          email: "",
+          password: "",
         },
         validationSchema: loginSchema,
         onSubmit: (values, actions) => {
-          console.log(values);
+          loginUser(values);
           actions.resetForm();
         },
       });
 
-    // async function sendDataToApi(values) {
-    //   setLoading(true);
-    //   try {
-    //     let { data } = await axios.post(
-    //       "https://ecommerce.routemisr.com/api/v1/auth/signin",
-    //       values
-    //     );
-    //     if (data.message == "success") {
-    //       localStorage.setItem("token", data.token);
-    //       navigate("/");
-    //     }
-    //   } catch (error) {
-    //     setLoading(false);
-    //     setErrorMessage(error.response.data.message);
-    //   }
-    // }
+    async function loginUser(values) {
+      setLoading(true);
+      try {
+        let response = await axios.post(
+          "http://localhost:5000/api/users/login",
+          values
+        );
+        const loggedUser = await response.data;
+        if (!loggedUser) {
+          setErrorMessage("Couldn't login, Please try again.");
+        }
+        navigate("/");
+      } catch (error) {
+        setLoading(false);
+        setErrorMessage(error.response.data.message);
+      }
+    }
 
   return (
     <div className="hero min-h-screen bg-[#0E1217]">
@@ -52,38 +56,40 @@ const Login = () => {
         <div className="max-w-full">
           <div className=" bg-[#1D1F25] border border-[#545A69] card w-[600px] max-lg:w-[500px]  max-sm:w-[300px] shadow-2xl">
             <form onSubmit={handleSubmit} className="card-body w-full">
-              <h1 className=" font-bold text-2xl">
+              <h1 className="text-white font-bold text-2xl">
                 Login to {"  "}
                 <span className="logo-text ml-1">Inkify</span>
-                <span className=" font-normal mr-1 text-sm">.blog</span>
+                <span className="logo-header text-[#A5ADBB] font-normal mr-1 text-sm">
+                  .blog
+                </span>
               </h1>
               <div className="form-control">
-                <label htmlFor="Email" className="label">
+                <label htmlFor="email" className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                  id="Email"
-                  name="Email"
+                  id="email"
+                  name="email"
                   type="email"
                   placeholder="email"
-                  value={values.Email}
+                  value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.Email && touched.Email
+                    errors.email && touched.email
                       ? "input input-bordered input-error"
                       : "input input-bordered"
                   }
                 />
-                {errors.Email && touched.Email ? (
-                  <p className="error">{errors.Email}</p>
+                {errors.email && touched.email ? (
+                  <p className="error">{errors.email}</p>
                 ) : (
                   ""
                 )}
               </div>
 
               <div className="form-control">
-                <label htmlFor="Password" className="label">
+                <label htmlFor="password" className="label">
                   <span className="label-text">Password</span>
                   <label className="label">
                     <a className="label-text-alt link link-hover">
@@ -92,25 +98,25 @@ const Login = () => {
                   </label>
                 </label>
                 <input
-                  id="Password"
-                  name="Password"
+                  id="password"
+                  name="password"
                   type="password"
                   placeholder="password"
-                  value={values.Password}
+                  value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.Password && touched.Password
+                    errors.password && touched.password
                       ? "input input-bordered input-error"
                       : "input input-bordered"
                   }
                 />
-                {errors.Password && touched.Password ? (
-                  <p className="error">{errors.Password}</p>
+                {errors.password && touched.password ? (
+                  <p className="error">{errors.password}</p>
                 ) : (
                   ""
                 )}
-                {/* {errorMessage ? <p className="error">{errorMessage}</p> : ""} */}
+                {errorMessage ? <p className="error">{errorMessage}</p> : ""}
                 <label className="label text-sm">
                   Don't have an account ?
                   <a
@@ -128,7 +134,7 @@ const Login = () => {
                   type="submit"
                   className="btn hover:bg-[#A5B4FB] hover:text-[#4F45E4] bg-[#4F45E4] text-[#A5B4FB]"
                 >
-                  Login
+                  {loading ? <ClipLoader color="#4F45E4" size={20} /> : "Login"}
                 </button>
               </div>
             </form>

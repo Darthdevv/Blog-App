@@ -20,10 +20,10 @@ export const registerSchema = Yup.object().shape({
 });
 
 export const loginSchema = Yup.object().shape({
-  Email: Yup.string()
+  email: Yup.string()
     .email("Please enter a valid email")
     .required("email is required *"),
-  Password: Yup.string()
+  password: Yup.string()
     .min(8)
     .matches(passwordRules, { message: "please create a stronger password" })
     .required("password is required *"),
