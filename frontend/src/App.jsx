@@ -24,9 +24,7 @@ function App() {
     {
       path: "/",
       element: (
-        <UserProvider>
           <MainLayout />
-        </UserProvider>
       ),
       errorElement: <Error />,
       children: [
@@ -91,9 +89,7 @@ function App() {
     {
       path: "details",
       element: (
-        <UserProvider>
           <SecondaryLayout />
-        </UserProvider>
       ),
       errorElement: <Error />,
       children: [
@@ -106,8 +102,10 @@ function App() {
   ]);
 
   return (
-    <RouterProvider router={router}/>
-  )
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
+  );
 }
 
 export default App
