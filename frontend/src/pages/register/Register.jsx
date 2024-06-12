@@ -62,9 +62,6 @@ const Register = () => {
               <h1 className="text-white font-bold text-2xl">
                 Create an {"  "}
                 <span className="logo-text ml-1">Inkify</span>
-                <span className="logo-header text-[#A5ADBB] font-normal mr-1 text-sm">
-                  .blog
-                </span>
                 {"  "} account
               </h1>
               <div className="form-control">

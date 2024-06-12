@@ -62,9 +62,6 @@ const Login = () => {
               <h1 className="text-white font-bold text-2xl">
                 Login to {"  "}
                 <span className="logo-text ml-1">Inkify</span>
-                <span className="logo-header text-[#A5ADBB] font-normal mr-1 text-sm">
-                  .blog
-                </span>
               </h1>
               <div className="form-control">
                 <label htmlFor="email" className="label">

@@ -7,9 +7,8 @@ const Navbar = () => {
       <div className="navbar-start">
         <Link to={"/"} className="logo btn text-xl">
           <img src={Logo} alt="logo" />
-          <p className='logo-header'>
+          <p className='logo-header max-sm:hidden'>
             <span className="logo-text">Inkify</span>
-            <span className=" font-normal">.blog</span>
           </p>
         </Link>
       </div>
