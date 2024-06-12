@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router";
 import { loginSchema } from "../../schemas";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../..//context/userContext";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const Login = () => {
 
+  const { setCurrentUser } = useContext(UserContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -44,6 +46,7 @@ const Login = () => {
           setErrorMessage("Couldn't login, Please try again.");
         }
         navigate("/");
+        setCurrentUser(loggedUser);
       } catch (error) {
         setLoading(false);
         setErrorMessage(error.response.data.message);

@@ -16,13 +16,18 @@ import AuthorPosts from './pages/post/AuthorPosts'
 import Logout from './pages/logout/Logout'
 import SecondaryLayout from './layouts/SecondaryLayout'
 import DeletePost from './pages/post/DeletePost'
+import UserProvider from './context/userContext'
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <MainLayout />,
+      element: (
+        <UserProvider>
+          <MainLayout />
+        </UserProvider>
+      ),
       errorElement: <Error />,
       children: [
         {
@@ -85,7 +90,11 @@ function App() {
     },
     {
       path: "details",
-      element: <SecondaryLayout />,
+      element: (
+        <UserProvider>
+          <SecondaryLayout />
+        </UserProvider>
+      ),
       errorElement: <Error />,
       children: [
         {
