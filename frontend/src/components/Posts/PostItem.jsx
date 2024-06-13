@@ -1,14 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PostAuthor from './PostAuthor';
 import {Link} from 'react-router-dom'
 import CustomButton from '../Button/CustomButton';
+import PostSkeleton from './PostSkeleton';
 
 const PostItem = ({ post }) => {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    },1500)
+  },[])
 
   const { id, thumbnail, category, title, description, authorID, createdAt } = post
   const adjustedTitle = title.length > 30 ? title.substr(0, 30) + '...' : title;
   const adjustedDesc = description.length > 85 ? description.substr(0, 85) + "..." : description;
   return (
+    <>
+      {loading ? (
+        <PostSkeleton />
+      ) : (
         <div className="card w-[20rem] mx-4 shadow-xl bg-[#1d1f26] border border-[#2D323C] hover:border-[#545A69]">
           <figure className="p-3 rounded-xl">
             <img
@@ -35,6 +48,8 @@ const PostItem = ({ post }) => {
             </div>
           </div>
         </div>
+      )}
+    </>
   );
 }
 
