@@ -31,10 +31,6 @@ function App() {
           index: true,
           element: <Home />,
         },
-        // {
-        //   path: "posts/:id",
-        //   element: <PostDetails />,
-        // },
         {
           path: "register",
           element: <Register />,
@@ -55,25 +51,41 @@ function App() {
           path: "create",
           element: (
             <GuardRoute>
-              <CreatePost/>
+              <CreatePost />
             </GuardRoute>
           ),
         },
         {
           path: "profile/:id",
-          element: <UserProfile />,
+          element: (
+            <GuardRoute>
+              <UserProfile />
+            </GuardRoute>
+          ),
         },
         {
           path: "posts/:id/edit",
-          element: <EditPost />,
+          element: (
+            <GuardRoute>
+              <EditPost />
+            </GuardRoute>
+          ),
         },
         {
           path: "posts/:id/delete",
-          element: <DeletePost />,
+          element: (
+            <GuardRoute>
+              <DeletePost />
+            </GuardRoute>
+          ),
         },
         {
           path: "myposts:id",
-          element: <DashBoard />,
+          element: (
+            <GuardRoute>
+              <DashBoard />
+            </GuardRoute>
+          ),
         },
         {
           path: "posts/categories/:category",
