@@ -7,7 +7,7 @@ import PostAuthor from './PostAuthor';
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,9 +20,10 @@ const Posts = () => {
         setPosts(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
 
-      setLoading(false);
     }
 
     fetchData();
