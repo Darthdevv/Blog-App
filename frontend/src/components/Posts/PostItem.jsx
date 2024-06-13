@@ -14,7 +14,7 @@ const PostItem = ({ post }) => {
     },1500)
   },[])
 
-  const { id, thumbnail, category, title, description, authorID, createdAt } = post
+  const { _id: id, thumbnail, category, title, description, creator, createdAt } = post
   const adjustedTitle = title.length > 30 ? title.substr(0, 30) + '...' : title;
   const adjustedDesc = description.length > 85 ? description.substr(0, 85) + "..." : description;
   return (
@@ -39,7 +39,7 @@ const PostItem = ({ post }) => {
             </Link>
             <p>{adjustedDesc}</p>
             <div className="w-full mt-5 flex items-center justify-between">
-              <PostAuthor authorID={authorID} createdAt={createdAt} />
+              <PostAuthor creator={creator} createdAt={createdAt} />
               <Link to={`/posts/categories/${category}`}>
                 <CustomButton padX={"px-[20px]"} padY={"py-[2px]"}>
                   {category}
