@@ -2,6 +2,13 @@ import { Link } from "react-router-dom";
 import Avatar from "../../images/avatar3.jpg";
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import ReactTimeAgo from 'react-time-ago';
+import TimeAgo from 'javascript-time-ago';
+import en from 'javascript-time-ago/locale/en.json';
+import ru from "javascript-time-ago/locale/ru.json";
+
+TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(ru);
 
 const PostAuthor = ({ creator, createdAt }) => {
 
@@ -31,8 +38,8 @@ const PostAuthor = ({ creator, createdAt }) => {
           />
         </figure>
         <div>
-          <h5 className="text-[12px] text-nowrap -mb-1">By: Yousef Elgohary</h5>
-          <small className="text-[10px] text-nowrap">Just Now</small>
+          <h5 className="text-[12px] text-nowrap -mb-1">By: {author?.name }</h5>
+          <small className="text-[10px] text-nowrap"><ReactTimeAgo date={new Date(createdAt)} locale="en-US"/></small>
         </div>
       </div>
     </Link>
