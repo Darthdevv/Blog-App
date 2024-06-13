@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Avatar from "../../images/avatar3.jpg";
 
-const PostAuthor = () => {
+const PostAuthor = ({createdAt}) => {
   return (
     <Link to={"/posts/users/dd"}>
       <div className=" c gap-3">
