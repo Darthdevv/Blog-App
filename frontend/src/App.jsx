@@ -17,15 +17,14 @@ import Logout from './pages/logout/Logout'
 import SecondaryLayout from './layouts/SecondaryLayout'
 import DeletePost from './pages/post/DeletePost'
 import UserProvider from './context/userContext'
+import GuardRoute from './guard/GuardRoute'
 
 function App() {
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: (
-          <MainLayout />
-      ),
+      element: <MainLayout />,
       errorElement: <Error />,
       children: [
         {
@@ -54,7 +53,11 @@ function App() {
         },
         {
           path: "create",
-          element: <CreatePost />,
+          element: (
+            <GuardRoute>
+              <CreatePost/>
+            </GuardRoute>
+          ),
         },
         {
           path: "profile/:id",
@@ -88,9 +91,7 @@ function App() {
     },
     {
       path: "details",
-      element: (
-          <SecondaryLayout />
-      ),
+      element: <SecondaryLayout />,
       errorElement: <Error />,
       children: [
         {
