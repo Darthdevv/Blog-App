@@ -64,7 +64,7 @@ const PostDetails = () => {
                 <div className="flex items-center justify-between gap-2">
                   {currentUser?.id === post?.creator && (
                     <>
-                      <Link to={"/posts/werwer/edit"}>
+                      <Link to={`/posts/${post?._id}/edit`}>
                         <button className="btn btn-ghost">Edit</button>
                       </Link>
                       <DeletePost postId={id} />
