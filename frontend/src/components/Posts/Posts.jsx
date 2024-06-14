@@ -10,7 +10,7 @@ const Posts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const getPosts = async () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
@@ -26,7 +26,7 @@ const Posts = () => {
 
     }
 
-    fetchData();
+    getPosts();
   }, [])
 
   if (loading) {
