@@ -31,7 +31,11 @@ const AuthorPosts = () => {
   }, []);
 
   if (loading) {
-    return <ClipLoader color="#4F45E4" size={55} />;
+    return (
+      <div className=" max-w-[1100px] min-h-screen mx-auto py-20 flex items-center justify-center max-lg:items-center max-lg:justify-center flex-wrap gap-y-8">
+        <ClipLoader color="#4F45E4" size={55} />
+      </div>
+    );
   }
 
   return (

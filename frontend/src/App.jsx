@@ -112,6 +112,21 @@ function App() {
         },
       ],
     },
+    {
+      path: "posts",
+      element: <SecondaryLayout />,
+      errorElement: <Error />,
+      children: [
+        {
+          path: "users/:id/details/posts/:id",
+          element: <PostDetails />,
+        },
+        {
+          path: "categories/:category/details/posts/:id",
+          element: <PostDetails />,
+        },
+      ],
+    },
   ]);
 
   return (

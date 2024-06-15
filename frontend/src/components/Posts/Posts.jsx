@@ -34,7 +34,7 @@ const Posts = () => {
   }
 
   return (
-    <div className=" max-w-[1100px] mx-auto py-20 flex items-start justify-start max-lg:items-center max-lg:justify-center flex-wrap gap-y-8">
+    <div className=" max-w-[1100px] min-h-screen mx-auto py-20 flex items-start justify-start max-lg:items-center max-lg:justify-center flex-wrap gap-y-8">
       {posts.length > 0 ? (
         posts.map((post) => <PostItem key={post._id} post={post}/>)
       ) : (

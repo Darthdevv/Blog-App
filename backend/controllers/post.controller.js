@@ -193,7 +193,7 @@ export const getPostsByCategory = async (req, res, next) => {
   try {
     const { category } = req.params;
 
-    const postByCategory = await Post.findOne({ category }).sort({ createdAt: -1 });
+    const postByCategory = await Post.find({ category }).sort({ createdAt: -1 });
 
     res.status(200).json(postByCategory);
   } catch (error) {
