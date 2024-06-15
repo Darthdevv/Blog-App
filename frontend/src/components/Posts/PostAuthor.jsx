@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import Avatar from "../../images/avatar3.jpg";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import ReactTimeAgo from 'react-time-ago';
@@ -19,6 +18,7 @@ const PostAuthor = ({ creator, createdAt }) => {
       try {
         const { data } = await axios.get(`http://localhost:5000/api/users/${creator}`);
         setAuthor(data);
+
       } catch (error) {
         console.log(error)
       }
@@ -28,7 +28,7 @@ const PostAuthor = ({ creator, createdAt }) => {
   },[])
 
   return (
-    <Link to={"/posts/users/dd"}>
+    <Link to={`/posts/users/${creator}`}>
       <div className=" c gap-3">
         <figure className="w-[30px]">
           <img
@@ -38,8 +38,10 @@ const PostAuthor = ({ creator, createdAt }) => {
           />
         </figure>
         <div>
-          <h5 className="text-[12px] text-nowrap -mb-1">By: {author?.name }</h5>
-          <small className="text-[10px] text-nowrap"><ReactTimeAgo date={new Date(createdAt)} locale="en-US"/></small>
+          <h5 className="text-[12px] text-nowrap -mb-1">By: {author?.name}</h5>
+          <small className="text-[10px] text-nowrap">
+            <ReactTimeAgo date={new Date(createdAt)} locale="en-US" />
+          </small>
         </div>
       </div>
     </Link>

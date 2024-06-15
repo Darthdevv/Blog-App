@@ -34,7 +34,6 @@ const PostItem = ({ post }) => {
             <Link to={`details/posts/${id}`}>
               <h2 className="card-title text-white">
                 {adjustedTitle}
-                {/* <div className="badge badge-primary">NEW</div> */}
               </h2>
             </Link>
             <p>{adjustedDesc}</p>

@@ -181,7 +181,7 @@ export const getUserPosts = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    const userPosts = await Post.findOne({ creator: id }).sort({ createdAt: -1 });
+    const userPosts = await Post.find({ creator: id }).sort({ createdAt: -1 });
 
     res.status(200).json(userPosts);
   } catch (error) {
