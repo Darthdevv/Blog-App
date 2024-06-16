@@ -28,7 +28,7 @@ const CategoryPosts = () => {
     }
 
     getCategoryPosts();
-  }, [])
+  }, [category])
 
   if (loading) {
     return (

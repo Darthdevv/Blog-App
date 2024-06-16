@@ -28,7 +28,7 @@ const AuthorPosts = () => {
     };
 
     getAuthorPosts();
-  }, []);
+  }, [id]);
 
   if (loading) {
     return (
