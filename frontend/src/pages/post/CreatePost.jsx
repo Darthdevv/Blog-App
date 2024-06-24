@@ -10,11 +10,11 @@ import { UserContext } from "../../context/userContext";
 
 const CreatePost = () => {
 
-  const [title, setTitle] = useState('');
-  const [description, setDesciption] = useState('');
-  const [category, setCategory] = useState('Uncategorized');
-  const [thumbnail, setThumbnail] = useState('');
-  const [error, setError] = useState('');
+  const [title, setTitle] = useState("");
+  const [description, setDesciption] = useState("");
+  const [category, setCategory] = useState("Uncategorized");
+  const [thumbnail, setThumbnail] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
@@ -24,7 +24,7 @@ const CreatePost = () => {
 
     const postData = new FormData();
 
-    postData.set('title', title);
+    postData.set("title", title);
     postData.set("description", description);
     postData.set("category", category);
     postData.set("thumbnail", thumbnail);

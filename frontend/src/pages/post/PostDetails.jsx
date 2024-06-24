@@ -49,25 +49,42 @@ const PostDetails = () => {
       </div>
     );
   }
+
+  const handleOuterClick = () => {
+    navigate("/");
+  };
+
+  const handleInnerClick = (event) => {
+    event.stopPropagation();
+  };
+
   return (
     <div
-      onClick={() => navigate("/")}
+      onClick={handleOuterClick}
       className=" py-20 hero min-h-screen bg-[#5045e42d]"
     >
       {error && <p className="self-start error">{error}</p>}
       {post && (
-        <div className="hero-content text-start text-neutral-content">
+        <div
+          onClick={handleInnerClick}
+          className="hero-content text-start text-neutral-content"
+        >
           <div className="max-w-full">
             <div className="card max-w-[1000px] max-sm:w-[350px]  bg-[#0E1217] border border-[#545A69] hover:border-[#545A69] shadow-xl">
               <div className=" py-5 px-10 flex items-start justify-between">
-                <PostAuthor creator={ post.creator} createdAt={post.createdAt} />
+                <PostAuthor creator={post.creator} createdAt={post.createdAt} />
                 <div className="flex items-center justify-between gap-2">
                   {currentUser?.id === post?.creator && (
                     <>
                       <Link to={`/posts/${post?._id}/edit`}>
-                        <button className="btn btn-ghost">Edit</button>
+                        <button
+                          onClick={handleInnerClick}
+                          className="btn btn-ghost"
+                        >
+                          Edit
+                        </button>
                       </Link>
-                      <DeletePost postId={id} />
+                      <DeletePost onClick={handleInnerClick} postId={id} />
                     </>
                   )}
                   <Link to={"/"}>
@@ -81,12 +98,12 @@ const PostDetails = () => {
                 <img
                   src={`http://localhost:5000/uploads/${post.thumbnail}`}
                   alt="thumbnail"
-                  className="rounded-xl"
+                  className="rounded-xl w-full h-auto max-w-full"
                 />
               </figure>
               <div className="card-body items-center text-start">
                 <h2 className="card-title">{post.title}</h2>
-                <p dangerouslySetInnerHTML={{__html: post.description}}></p>
+                <p dangerouslySetInnerHTML={{ __html: post.description }}></p>
               </div>
             </div>
           </div>
