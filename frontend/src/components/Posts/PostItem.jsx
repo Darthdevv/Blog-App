@@ -36,7 +36,7 @@ const PostItem = ({ post }) => {
                 {adjustedTitle}
               </h2>
             </Link>
-            <p>{adjustedDesc}</p>
+            <p dangerouslySetInnerHTML={{__html: adjustedDesc}}></p>
             <div className="w-full mt-5 flex items-center justify-between">
               <PostAuthor creator={creator} createdAt={createdAt} />
               <Link to={`/posts/categories/${category}`}>
