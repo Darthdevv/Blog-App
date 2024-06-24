@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { postCategories, modules, formats } from "../../utilities/data";
 import ReactQuill from "react-quill";
+import axios from 'axios';
 import "react-quill/dist/quill.snow.css";
+import { useNavigate } from 'react-router';
+import { UserContext } from "../../context/userContext";
+
 
 
 const CreatePost = () => {
@@ -10,6 +14,34 @@ const CreatePost = () => {
   const [description, setDesciption] = useState('');
   const [category, setCategory] = useState('Uncategorized');
   const [thumbnail, setThumbnail] = useState('');
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
+  const token = currentUser?.token;
+
+  const addPost = async (e) => {
+    e.preventDefault();
+
+    const postData = new FormData();
+
+    postData.set('title', title);
+    postData.set("description", description);
+    postData.set("category", category);
+    postData.set("thumbnail", thumbnail);
+
+    try {
+      const  data  = await axios.post(`http://localhost:5000/api/posts`, postData, { withCredentials: true, headers: { Authorization: `Bearer ${token}` } });
+
+      console.log(data);
+
+      if (data.status == 201) {
+        return navigate('/');
+      }
+
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  }
 
 
   return (
@@ -19,8 +51,8 @@ const CreatePost = () => {
           <h1 className="text-center text-white text-2xl">Create Post</h1>
 
           <div className="card  w-full lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl  bg-transparent">
-            <form className="card-body">
-              <p className="self-start error hidden">this is an error message</p>
+            <form className="card-body" onSubmit={addPost}>
+              {error && <p className="self-start error">{error}</p>}
 
               <div className="form-control">
                 <input
