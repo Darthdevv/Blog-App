@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { postCategories, modules, formats } from "../../utilities/data";
 import ReactQuill from "react-quill";
 import axios from "axios";
@@ -19,6 +19,27 @@ const EditPost = () => {
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
   const { id } = useParams();
+
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/api/posts/${id}`
+        );
+
+        setTitle(data.title);
+        setDesciption(data.description);
+        setCategory(data.category);
+        setThumbnail(data.thumbnail);
+
+        console.log(data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
+    getPost();
+  },[])
 
   const updatePost = async (e) => {
     e.preventDefault();
