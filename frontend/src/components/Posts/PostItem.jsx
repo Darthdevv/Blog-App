@@ -22,31 +22,30 @@ const PostItem = ({ post }) => {
       {loading ? (
         <PostSkeleton />
       ) : (
-        <div className="card w-[20rem] mx-4 shadow-xl bg-[#1d1f26] border border-[#2D323C] hover:border-[#545A69]">
-          <figure className="p-3 rounded-xl">
-            <img
-              src={`http://localhost:5000/uploads/${thumbnail}`}
-              alt="Shoes"
-              className=" rounded-xl"
-            />
-          </figure>
-          <div className="card-body">
-            <Link to={`details/posts/${id}`}>
-              <h2 className="card-title text-white">
-                {adjustedTitle}
-              </h2>
-            </Link>
-            <p dangerouslySetInnerHTML={{__html: adjustedDesc}}></p>
-            <div className="w-full mt-5 flex items-center justify-between">
-              <PostAuthor creator={creator} createdAt={createdAt} />
-              <Link to={`/posts/categories/${category}`}>
-                <CustomButton padX={"px-[20px]"} padY={"py-[2px]"}>
-                  {category}
-                </CustomButton>
-              </Link>
+        <Link to={`details/posts/${id}`}>
+          <div className="card w-[20rem] mx-4 shadow-xl bg-[#1d1f26] border border-[#2D323C] hover:border-[#545A69]">
+            <figure className="p-3 rounded-xl">
+              <img
+                src={`http://localhost:5000/uploads/${thumbnail}`}
+                alt="Shoes"
+                className=" rounded-xl"
+              />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title text-white">{adjustedTitle}</h2>
+
+              <p dangerouslySetInnerHTML={{ __html: adjustedDesc }}></p>
+              <div className="w-full mt-5 flex items-center justify-between">
+                <PostAuthor creator={creator} createdAt={createdAt} />
+                <Link to={`/posts/categories/${category}`}>
+                  <CustomButton padX={"px-[20px]"} padY={"py-[2px]"}>
+                    {category}
+                  </CustomButton>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       )}
     </>
   );
