@@ -71,14 +71,14 @@ function App() {
             </GuardRoute>
           ),
         },
-        {
-          path: "posts/:id/delete",
-          element: (
-            <GuardRoute>
-              <DeletePost />
-            </GuardRoute>
-          ),
-        },
+        // {
+        //   path: "posts/:id/delete",
+        //   element: (
+        //     <GuardRoute>
+        //       <DeletePost />
+        //     </GuardRoute>
+        //   ),
+        // },
         {
           path: "myposts:id",
           element: (
