@@ -46,12 +46,18 @@ const UserProfile = () => {
 
           <div className="card w-full lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl bg-transparent">
             <form className="card-body">
+
+              {error && <p className="self-start error">{error}</p>}
+
               <div className="form-control">
                 <input
                   type="text"
                   placeholder="username"
                   className="input input-bordered"
-                  required
+                  name="name"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoFocus
                 />
               </div>
 
@@ -60,7 +66,9 @@ const UserProfile = () => {
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
-                  required
+                  name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
 
@@ -69,7 +77,9 @@ const UserProfile = () => {
                   type="password"
                   placeholder="current password"
                   className="input input-bordered"
-                  required
+                  name="currentPassword"
+                  value={currentPassword}
+                  onChange={(e) => setCurrentPassword(e.target.value)}
                 />
               </div>
 
@@ -78,7 +88,9 @@ const UserProfile = () => {
                   type="password"
                   placeholder="password"
                   className="input input-bordered"
-                  required
+                  name="newPassword"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
                 />
               </div>
 
@@ -87,12 +99,17 @@ const UserProfile = () => {
                   type="password"
                   placeholder="confirm password"
                   className="input input-bordered"
-                  required
+                  name="confirmNewPassword"
+                  value={confirmNewPassword}
+                  onChange={(e) => setConfirmNewPassword(e.target.value)}
                 />
               </div>
 
               <div className="form-control mt-6 mx-auto">
-                <button type='submit' className="btn hover:bg-[#A5B4FB] hover:text-[#4F45E4] bg-[#4F45E4] text-[#A5B4FB] w-[200px]">
+                <button
+                  type="submit"
+                  className="btn hover:bg-[#A5B4FB] hover:text-[#4F45E4] bg-[#4F45E4] text-[#A5B4FB] w-[200px]"
+                >
                   Update <span className="mr-2">Details</span>
                 </button>
               </div>
