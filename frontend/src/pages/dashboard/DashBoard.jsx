@@ -1,12 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import { postData } from "../../utilities/data"
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import axios from 'axios';
+import { UserContext } from '../../context/userContext';
+
+
 
 
 
 const DashBoard = () => {
 
-  const [posts, setPosts] = useState(postData);
+  const [posts, setPosts] = useState([]);
+  const { id } = useParams();
+  const { currentUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const getMyPosts = async () => {
+      try {
+        const { data } = await axios.get(
+          `http://localhost:5000/api/posts/`
+        );
+
+        setPosts(data);
+
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getMyPosts();
+  },[])
 
   return (
     <div className="hero min-h-screen bg-[#0E1217]">
@@ -21,21 +46,27 @@ const DashBoard = () => {
                 <div className=" w-full flex items-center justify-between max-md:flex-wrap max-md:text-sm max-md:justify-center max-md:gap-y-2">
                   <div className="flex items-center justify-center gap-5">
                     <img
-                      src={post.thumbnail}
+                      src={`http://localhost:5000/uploads/${post.thumbnail}`}
                       alt="thumbnail"
                       className="rounded-sm w-20"
                     />
                     <h5>{post.title}</h5>
                   </div>
                   <div>
-                    <Link to={`/details/posts/${post.id}`}>
-                      <button className="btn btn-custom max-sm:btn-md">View</button>
+                    <Link to={`/details/posts/${post._id}`}>
+                      <button className="btn btn-custom max-sm:btn-md">
+                        View
+                      </button>
                     </Link>
-                    <Link to={`/posts/${post.id}/edit`}>
-                      <button className="btn btn-custom max-sm:btn-md mx-2 max-md:mx-1">Edit</button>
+                    <Link to={`/posts/${post._id}/edit`}>
+                      <button className="btn btn-custom max-sm:btn-md mx-2 max-md:mx-1">
+                        Edit
+                      </button>
                     </Link>
-                    <Link to={`/posts/${post.id}/delete`}>
-                      <button className="btn btn-custom max-sm:btn-md">Delete</button>
+                    <Link to={`/posts/${post._id}/delete`}>
+                      <button className="btn btn-custom max-sm:btn-md">
+                        Delete
+                      </button>
                     </Link>
                   </div>
                 </div>
