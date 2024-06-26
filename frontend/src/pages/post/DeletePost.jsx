@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 
-const DeletePost = ({ postId : id }) => {
+const DeletePost = ({ postId : id , color }) => {
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -34,7 +34,7 @@ const DeletePost = ({ postId : id }) => {
     <Link>
       <button
         onClick={() => removePost(id)}
-        className="btn btn-ghost"
+        className={color}
       >
         Delete
       </button>

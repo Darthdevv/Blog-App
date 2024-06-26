@@ -6,7 +6,13 @@ import { UserContext } from '../../context/userContext';
 
 const UserProfile = () => {
 
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const [error, setError] = useState("");
   const { currentUser } = useContext(UserContext);
   const token = currentUser?.token;
 

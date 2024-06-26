@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 import DashBoardSkeleton from './DashBoardSkeleton';
+import DeletePost from "../post/DeletePost";
 
 
 const DashBoardItem = ({ post }) => {
@@ -40,9 +41,7 @@ const DashBoardItem = ({ post }) => {
                     Edit
                   </button>
                 </Link>
-                <Link to={`/posts/${post._id}/delete`}>
-                  <button className="btn btn-custom max-sm:btn-md">Delete</button>
-                </Link>
+              <DeletePost postId={post._id} color={'btn btn-custom'} />
               </div>
             </div>
         </div>) }

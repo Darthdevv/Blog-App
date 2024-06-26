@@ -85,7 +85,7 @@ const PostDetails = () => {
                           Edit
                         </button>
                       </Link>
-                      <DeletePost onClick={handleInnerClick} postId={id} />
+                      <DeletePost onClick={handleInnerClick} postId={id} color={'btn btn-ghost'} />
                     </>
                   )}
                   <Link>
