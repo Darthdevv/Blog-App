@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
 import DashBoardItem from "./DashBoardItem";
 import ClipLoader from "react-spinners/ClipLoader";
+import { UserContext } from "../../context/userContext";
 
 
 
@@ -13,13 +14,19 @@ const DashBoard = () => {
   const [posts, setPosts] = useState([]);
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
+  const { currentUser } = useContext(UserContext);
+  const token = currentUser?.token;
 
   useEffect(() => {
     const getMyPosts = async () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/posts/users/${id}`
+          `http://localhost:5000/api/posts/users/${id}`,
+          {
+            withCredentials: true,
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
 
         setPosts(data);
