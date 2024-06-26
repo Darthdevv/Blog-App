@@ -1,7 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-import { UserContext } from '../../context/userContext';
 import DashBoardItem from "./DashBoardItem";
 import ClipLoader from "react-spinners/ClipLoader";
 
@@ -13,7 +12,6 @@ const DashBoard = () => {
 
   const [posts, setPosts] = useState([]);
   const { id } = useParams();
-  const { currentUser } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

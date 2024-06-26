@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { UserContext } from "../..//context/userContext";
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 import PostAuthor from '../../components/Posts/PostAuthor';
 import { AiOutlineClose } from "react-icons/ai";
 import DeletePost from './DeletePost';
@@ -17,6 +17,7 @@ const PostDetails = () => {
 
   const { currentUser } = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const getPost = async () => {
@@ -51,7 +52,7 @@ const PostDetails = () => {
   }
 
   const handleOuterClick = () => {
-    navigate("/");
+    location.pathname != `/myposts/${currentUser.id}` ? navigate(-1) : navigate(0);
   };
 
   const handleInnerClick = (event) => {
@@ -87,8 +88,11 @@ const PostDetails = () => {
                       <DeletePost onClick={handleInnerClick} postId={id} />
                     </>
                   )}
-                  <Link to={"/"}>
-                    <button className="btn btn-circle btn-ghost">
+                  <Link>
+                    <button
+                      onClick={handleOuterClick}
+                      className="btn btn-circle btn-ghost"
+                    >
                       <AiOutlineClose />
                     </button>
                   </Link>

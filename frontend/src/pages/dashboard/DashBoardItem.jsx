@@ -1,7 +1,12 @@
-import React from 'react'
-import { Link } from "react-router-dom";
+import React, { useContext } from 'react'
+import { Link, useLocation } from "react-router-dom";
+import { UserContext } from '../../context/userContext';
 
-const DashBoardItem = ({post}) => {
+const DashBoardItem = ({ post }) => {
+
+
+  const { currentUser } = useContext(UserContext);
+
   return (
     <div
       key={post.id}
