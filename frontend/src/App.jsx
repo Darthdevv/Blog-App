@@ -72,7 +72,7 @@ function App() {
           ),
         },
         {
-          path: "myposts:id",
+          path: "myposts/:id",
           element: (
             <GuardRoute>
               <DashBoard />

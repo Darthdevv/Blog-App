@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Avatar from '../../images/avatar2.jpg'
 import { FaEdit } from "react-icons/fa";
 import BackTo from '../../components/Button/BackHome';
+import { UserContext } from '../../context/userContext';
 
 const UserProfile = () => {
 
   const [avatar, setAvatar] = useState('');
+  const { currentUser } = useContext(UserContext);
+  const token = currentUser?.token;
 
   return (
     <div className="hero min-h-screen relative bg-[#0E1217]">
       <div className="absolute top-5 left-5">
-        <BackTo children={"View Posts"} to={"/myposts:id"} />
+        <BackTo children={"View Posts"} to={`/myposts/${currentUser.id}`} />
       </div>
       <div className="w-full grid place-items-center my-20">
         <div className=" w-full grid place-items-center">
