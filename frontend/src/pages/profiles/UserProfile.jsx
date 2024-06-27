@@ -4,13 +4,15 @@ import { FaCheck } from "react-icons/fa";
 import BackTo from '../../components/Button/BackHome';
 import { UserContext } from '../../context/userContext';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const UserProfile = () => {
   const { currentUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const token = currentUser?.token;
   const currentAvatar = currentUser?.avatar;
   const [avatar, setAvatar] = useState(currentAvatar);
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -27,7 +29,7 @@ const UserProfile = () => {
 
           setAvatar(data.avatar);
           setEmail(data.email);
-          setUsername(data.name);
+          setName(data.name);
 
           console.log(data);
         } catch (error) {
@@ -57,14 +59,37 @@ const UserProfile = () => {
 
     } catch (error) {
       console.log(error);
+      setError(error.response.data.message);
     }
   }
 
-  const updateUserProfile = async () => {
+  const updateUserProfile = async (e) => {
+    e.preventDefault();
+
     try {
-      
+      const userData = new FormData();
+
+      userData.set("name", name);
+      userData.set("email", email);
+      userData.set("currentPassword", currentPassword);
+      userData.set("newPassword", newPassword);
+      userData.set("confirmNewPassword", confirmNewPassword);
+
+      const data = await axios.patch(
+        `http://localhost:5000/api/users/edit-user`,
+        userData,
+        {
+          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (data.status == 200) {
+        navigate("/logout");
+      }
     } catch (error) {
       console.log(error);
+      setError(error.response.data.message);
     }
   }
 
@@ -118,8 +143,8 @@ const UserProfile = () => {
                   placeholder="username"
                   className="input input-bordered"
                   name="name"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   autoFocus
                 />
               </div>
