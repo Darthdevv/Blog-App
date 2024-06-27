@@ -1,20 +1,72 @@
 import { useState, useEffect, useContext } from 'react';
-import Avatar from '../../images/avatar2.jpg'
 import { FaEdit } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 import BackTo from '../../components/Button/BackHome';
 import { UserContext } from '../../context/userContext';
+import axios from 'axios';
 
 const UserProfile = () => {
-
-  const [avatar, setAvatar] = useState("");
+  const { currentUser } = useContext(UserContext);
+  const token = currentUser?.token;
+  const currentAvatar = currentUser?.avatar;
+  const [avatar, setAvatar] = useState(currentAvatar);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const [error, setError] = useState("");
-  const { currentUser } = useContext(UserContext);
-  const token = currentUser?.token;
+  const [isAvatarTouched, setIsAvatarTouched] = useState(false);
+
+    useEffect(() => {
+      const getCurrentUser = async () => {
+        try {
+          const { data } = await axios.get(
+            `http://localhost:5000/api/users/${currentUser.id}`
+          );
+
+          setAvatar(data.avatar);
+          setEmail(data.email);
+          setUsername(data.name);
+
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+      getCurrentUser();
+    }, []);
+
+
+  const changeAvatarHandler = async () => {
+    setIsAvatarTouched(false);
+    try {
+      const postData = new FormData();
+      postData.set("avatar", avatar);
+      const response = await axios.post(
+        `http://localhost:5000/api/users/change-avatar`,
+        postData,
+        {
+          withCredentials: true,
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setAvatar(response?.data.avatar);
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const updateUserProfile = async () => {
+    try {
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <div className="hero min-h-screen relative bg-[#0E1217]">
@@ -25,28 +77,39 @@ const UserProfile = () => {
         <div className=" w-full grid place-items-center">
           <div className="avatar">
             <div className="w-32 rounded-full ring ring-[#4F45E4] ring-offset-base-100 ring-offset-2">
-              <img src={Avatar} className="relative" />
+              <img
+                src={`http://localhost:5000/uploads/${avatar}`}
+                className="relative"
+              />
               <input
                 type="file"
                 id="edit-btn"
                 accept="jpg, png, jpeg"
-                onChange={(e) => setAvatar(e.target.value[0])}
+                onChange={(e) => setAvatar(e.target.files[0])}
                 hidden
               />
               <label
+                onClick={() => setIsAvatarTouched(true)}
                 htmlFor="edit-btn"
                 className=" absolute bottom-1 right-[-18px] btn btn-circle btn-custom border-none"
               >
                 <FaEdit color="white" />
               </label>
             </div>
+            {isAvatarTouched && (
+              <button
+                className=" absolute bottom-1 right-[-18px] btn btn-circle btn-custom border-none"
+                onClick={changeAvatarHandler}
+              >
+                <FaCheck color="white" />
+              </button>
+            )}
           </div>
 
-          <h1 className="text-white text-2xl mt-5">Yousef Elgohary</h1>
+          <h1 className="text-white text-2xl mt-5">{currentUser?.name}</h1>
 
           <div className="card w-full lg:w-[600px] md:w-[500px] sm:w-[400px] shadow-2xl bg-transparent">
-            <form className="card-body">
-
+            <form className="card-body" onSubmit={updateUserProfile}>
               {error && <p className="self-start error">{error}</p>}
 
               <div className="form-control">

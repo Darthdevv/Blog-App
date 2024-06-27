@@ -22,7 +22,7 @@ const Navbar = () => {
         <div className="navbar-end max-md:hidden">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <Link to={"/profile/yousef"}>{ currentUser?.name }</Link>
+              <Link to={`/profile/${currentUser?.id}`}>{ currentUser?.name }</Link>
             </li>
             <li>
               <Link to={"/create"}>Create Post</Link>
@@ -72,7 +72,7 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-[#0E1217] border border-[#2D323C] rounded-box w-52"
             >
               <li>
-                <Link to={"/profile/yousef"}>{ currentUser?.name }</Link>
+                <Link to={`/profile/${currentUser?.id}`}>{ currentUser?.name }</Link>
               </li>
               <li>
                 <Link to={"/create"}>Create Post</Link>
