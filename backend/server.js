@@ -9,7 +9,7 @@ import userRoutes from './routes/user.routes.js';
 import postRoutes from './routes/post.routes.js'
 import { errorHandler, notFound } from './middlewares/error.middleware.js';
 
-export const __dirname = path.dirname(fileURLToPath(import.meta.url));
+export const __dirname = path.dirname(fileURLToPath(import.meta.url)) || path.resolve();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +24,12 @@ app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use(notFound);
 app.use(errorHandler);
+
+app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
   connectToMongoDB();
