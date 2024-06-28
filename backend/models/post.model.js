@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema(
     category: {
       type: "string",
       enum: [
-        "Agricuulture",
+        "Agriculture",
         "Business",
         "Education",
         "Entertainment",
