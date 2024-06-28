@@ -1,7 +1,7 @@
 {
   "name": "blog-app",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "../backend/blog",
   "type": "module",
   "scripts": {
     "server": "nodemon backend/server.js",
