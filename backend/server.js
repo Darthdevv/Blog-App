@@ -9,7 +9,6 @@ import userRoutes from './routes/user.routes.js';
 import postRoutes from './routes/post.routes.js'
 import { errorHandler, notFound } from './middlewares/error.middleware.js';
 
-// export const __dirname = path.resolve();
 export const __dirname = path.dirname(fileURLToPath(import.meta.url)) || path.resolve();
 const app = express();
 app.use(express.json());
