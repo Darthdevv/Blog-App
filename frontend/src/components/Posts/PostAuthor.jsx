@@ -17,7 +17,7 @@ const PostAuthor = ({ creator, createdAt }) => {
     const getAuthor = async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/users/${creator}`
+          `http://localhost:5000/api/users/${creator}`
         );
         setAuthor(data);
 

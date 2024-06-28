@@ -22,7 +22,7 @@ const DashBoard = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/posts/users/${id}`,
+          `http://localhost:5000/api/posts/users/${id}`,
           {
             withCredentials: true,
             headers: { Authorization: `Bearer ${token}` },

@@ -23,7 +23,9 @@ const PostDetails = () => {
     const getPost = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/posts/${id}`);
+        const { data } = await axios.get(
+          `http://localhost:5000/api/posts/${id}`
+        );
 
         console.log(data)
         setPost(data);
@@ -85,7 +87,11 @@ const PostDetails = () => {
                           Edit
                         </button>
                       </Link>
-                      <DeletePost onClick={handleInnerClick} postId={id} color={'btn btn-ghost'} />
+                      <DeletePost
+                        onClick={handleInnerClick}
+                        postId={id}
+                        color={"btn btn-ghost"}
+                      />
                     </>
                   )}
                   <Link>
@@ -100,7 +106,7 @@ const PostDetails = () => {
               </div>
               <figure className="px-10 pt-10">
                 <img
-                  src={`${import.meta.env.VITE_ASSETS_URL}/uploads/${post.thumbnail}`}
+                  src={`http://localhost:5000/uploads/${post.thumbnail}`}
                   alt="thumbnail"
                   className="rounded-xl w-full h-auto max-w-full"
                 />

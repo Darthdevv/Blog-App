@@ -39,7 +39,7 @@ const Register = () => {
       setLoading(true);
       try {
         let response = await axios.post(
-          `${import.meta.env.VITE_BASE_URL}/users/register`,
+          `http://localhost:5000/api/users/register`,
           values
         );
         const newUser = await response.data;

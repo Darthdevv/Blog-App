@@ -26,7 +26,7 @@ const PostItem = ({ post }) => {
           <div className="card w-[20rem] mx-4 shadow-xl bg-[#1d1f26] border border-[#2D323C] hover:border-[#545A69]">
             <figure className="p-3 rounded-xl">
               <img
-                src={`${import.meta.env.VITE_ASSETS_URL}/uploads/${thumbnail}`}
+                src={`http://localhost:5000/uploads/${thumbnail}`}
                 alt="Shoes"
                 className=" rounded-xl"
               />

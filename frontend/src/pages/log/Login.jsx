@@ -38,7 +38,7 @@ const Login = () => {
       setLoading(true);
       try {
         let response = await axios.post(
-          `${import.meta.env.VITE_BASE_URL}/users/login`,
+          `http://localhost:5000/api/users/login`,
           values
         );
         const loggedUser = await response.data;

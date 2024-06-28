@@ -24,7 +24,7 @@ const EditPost = () => {
     const getPost = async () => {
       try {
         const { data } = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/posts/${id}`
+          `http://localhost:5000/api/posts/${id}`
         );
 
         setTitle(data.title);
@@ -53,7 +53,7 @@ const EditPost = () => {
 
     try {
       const data = await axios.patch(
-        `${import.meta.env.VITE_BASE_URL}/posts/${id}`,
+        `http://localhost:5000/api/posts/${id}`,
         postData,
         {
           withCredentials: true,
