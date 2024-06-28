@@ -20,6 +20,10 @@ app.use('/uploads', express.static(__dirname + '/uploads'));
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 
+app.get("/", (req, res) => {
+  res.json({ message: "hello from backend" });
+});
+
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use(notFound);
