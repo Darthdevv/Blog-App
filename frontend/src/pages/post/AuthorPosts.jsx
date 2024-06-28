@@ -15,7 +15,9 @@ const AuthorPosts = () => {
     const getAuthorPosts = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/posts/users/${id}`);
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/posts/users/${id}`
+        );
 
         console.log(data)
         setPosts(data);

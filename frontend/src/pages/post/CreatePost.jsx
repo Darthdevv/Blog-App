@@ -30,7 +30,7 @@ const CreatePost = () => {
     postData.set("thumbnail", thumbnail);
 
     try {
-      const  data  = await axios.post(`http://localhost:5000/api/posts`, postData, { withCredentials: true, headers: { Authorization: `Bearer ${token}` } });
+      const  data  = await axios.post(`${import.meta.env.VITE_BASE_URL}/posts`, postData, { withCredentials: true, headers: { Authorization: `Bearer ${token}` } });
 
       console.log(data);
 

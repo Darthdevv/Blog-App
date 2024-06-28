@@ -14,7 +14,7 @@ const Authors = () => {
     const getUsers = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get('http://localhost:5000/api/users')
+        const { data } = await axios.get(`${import.meta.env.VITE_BASE_URL}/users`)
 
         setAuthors(data);
       } catch (error) {

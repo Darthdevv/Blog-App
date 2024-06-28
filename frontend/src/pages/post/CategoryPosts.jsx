@@ -15,7 +15,7 @@ const CategoryPosts = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/posts/categories/${category}`
+          `${import.meta.env.VITE_BASE_URL}/posts/categories/${category}`
         );
 
         console.log(data);

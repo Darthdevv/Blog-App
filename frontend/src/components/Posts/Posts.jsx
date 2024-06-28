@@ -14,7 +14,7 @@ const Posts = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          "http://localhost:5000/api/posts"
+          `${import.meta.env.VITE_BASE_URL}/posts`
         );
 
         setPosts(data);

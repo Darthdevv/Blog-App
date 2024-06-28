@@ -24,7 +24,7 @@ const UserProfile = () => {
       const getCurrentUser = async () => {
         try {
           const { data } = await axios.get(
-            `http://localhost:5000/api/users/${currentUser.id}`
+            `${import.meta.env.VITE_BASE_URL}/users/${currentUser.id}`
           );
 
           setAvatar(data.avatar);
@@ -47,7 +47,7 @@ const UserProfile = () => {
       const postData = new FormData();
       postData.set("avatar", avatar);
       const response = await axios.post(
-        `http://localhost:5000/api/users/change-avatar`,
+        `${import.meta.env.VITE_BASE_URL}/users/change-avatar`,
         postData,
         {
           withCredentials: true,
@@ -76,7 +76,7 @@ const UserProfile = () => {
       userData.set("confirmNewPassword", confirmNewPassword);
 
       const data = await axios.patch(
-        `http://localhost:5000/api/users/edit-user`,
+        `${import.meta.env.VITE_BASE_URL}/users/edit-user`,
         userData,
         {
           withCredentials: true,
@@ -103,7 +103,7 @@ const UserProfile = () => {
           <div className="avatar">
             <div className="w-32 rounded-full ring ring-[#4F45E4] ring-offset-base-100 ring-offset-2">
               <img
-                src={`http://localhost:5000/uploads/${avatar}`}
+                src={`${import.meta.env.VITE_ASSETS_URL}/uploads/${avatar}`}
                 className="relative"
               />
               <input

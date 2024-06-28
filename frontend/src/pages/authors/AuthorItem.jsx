@@ -27,7 +27,7 @@ const AuthorItem = ({author}) => {
                 <div className="avatar">
                   <div className="w-16 rounded-full">
                     <img
-                      src={`http://localhost:5000/uploads/${avatar}`}
+                      src={`${import.meta.env.VITE_ASSETS_URL}/uploads/${avatar}`}
                       className="w-full"
                     />
                   </div>
