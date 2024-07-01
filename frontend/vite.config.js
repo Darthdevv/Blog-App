@@ -6,6 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    proxy: {
+      "/api": {
+        target: "https://blog-app-production-6e12.up.railway.app",
+        changeOrigin: true,
+      },
+    },
   },
 });
 
