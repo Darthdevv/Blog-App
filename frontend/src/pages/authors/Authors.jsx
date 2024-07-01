@@ -14,7 +14,9 @@ const Authors = () => {
     const getUsers = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/users`);
+        const { data } = await axios.get(
+          `https://blog-app-production-6e12.up.railway.app/api/users`
+        );
 
         setAuthors(data);
       } catch (error) {

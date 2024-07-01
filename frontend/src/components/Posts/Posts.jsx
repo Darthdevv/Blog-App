@@ -13,8 +13,11 @@ const Posts = () => {
     const getPosts = async () => {
       setLoading(true);
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/posts`);
+        const { data } = await axios.get(
+          `https://blog-app-production-6e12.up.railway.app/api/posts`
+        );
 
+        console.log(data);
         setPosts(data);
       } catch (error) {
         console.log(error);
