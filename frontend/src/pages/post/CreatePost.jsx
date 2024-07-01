@@ -31,9 +31,9 @@ const CreatePost = () => {
 
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/posts`,
+        `https://blog-app-production-6e12.up.railway.app/api/posts`,
         postData,
-        { withCredentials: true, headers: { Authorization: `Bearer ${token}` } }
+        {  headers: { Authorization: `Bearer ${token}` } }
       );
 
       console.log(data);

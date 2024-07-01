@@ -16,7 +16,7 @@ const AuthorPosts = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/posts/users/${id}`
+          `https://blog-app-production-6e12.up.railway.app/api/posts/users/${id}`
         );
 
         console.log(data)

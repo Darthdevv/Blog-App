@@ -34,7 +34,7 @@ const PostAuthor = ({ creator, createdAt }) => {
       <div className=" c gap-3">
         <figure className="w-[30px]">
           <img
-            src={`http://localhost:5000/uploads/${author?.avatar}`}
+            src={`https://blog-app-production-6e12.up.railway.app/uploads/${author?.avatar}`}
             alt="avatar"
             className=" rounded-md"
           />

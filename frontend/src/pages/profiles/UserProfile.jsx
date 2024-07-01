@@ -24,7 +24,7 @@ const UserProfile = () => {
       const getCurrentUser = async () => {
         try {
           const { data } = await axios.get(
-            `http://localhost:5000/api/users/${currentUser.id}`
+            `https://blog-app-production-6e12.up.railway.app/api/users/${currentUser.id}`
           );
 
           setAvatar(data.avatar);
@@ -47,10 +47,9 @@ const UserProfile = () => {
       const postData = new FormData();
       postData.set("avatar", avatar);
       const response = await axios.post(
-        `http://localhost:5000/api/users/change-avatar`,
+        `https://blog-app-production-6e12.up.railway.app/api/users/change-avatar`,
         postData,
         {
-          withCredentials: true,
           headers: { Authorization: `Bearer ${token}` },
         }
       );
@@ -76,10 +75,9 @@ const UserProfile = () => {
       userData.set("confirmNewPassword", confirmNewPassword);
 
       const data = await axios.patch(
-        `http://localhost:5000/api/users/edit-user`,
+        `https://blog-app-production-6e12.up.railway.app/api/users/edit-user`,
         userData,
         {
-          withCredentials: true,
           headers: { Authorization: `Bearer ${token}` },
         }
       );
@@ -103,7 +101,7 @@ const UserProfile = () => {
           <div className="avatar">
             <div className="w-32 rounded-full ring ring-[#4F45E4] ring-offset-base-100 ring-offset-2">
               <img
-                src={`http://localhost:5000/uploads/${avatar}`}
+                src={`https://blog-app-production-6e12.up.railway.app/uploads/${avatar}`}
                 className="relative"
               />
               <input

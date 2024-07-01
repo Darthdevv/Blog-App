@@ -24,7 +24,7 @@ const PostDetails = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/posts/${id}`
+          `https://blog-app-production-6e12.up.railway.app/api/posts/${id}`
         );
 
         console.log(data)
@@ -106,7 +106,7 @@ const PostDetails = () => {
               </div>
               <figure className="px-10 pt-10">
                 <img
-                  src={`http://localhost:5000/uploads/${post.thumbnail}`}
+                  src={`https://blog-app-production-6e12.up.railway.app/uploads/${post.thumbnail}`}
                   alt="thumbnail"
                   className="rounded-xl w-full h-auto max-w-full"
                 />

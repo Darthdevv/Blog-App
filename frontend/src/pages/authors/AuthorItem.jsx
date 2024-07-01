@@ -27,7 +27,7 @@ const AuthorItem = ({author}) => {
                 <div className="avatar">
                   <div className="w-16 rounded-full">
                     <img
-                      src={`http://localhost:5000/uploads/${avatar}`}
+                      src={`https://blog-app-production-6e12.up.railway.app/uploads/${avatar}`}
                       className="w-full"
                     />
                   </div>

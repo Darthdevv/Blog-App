@@ -15,7 +15,7 @@ const CategoryPosts = () => {
       setLoading(true);
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/posts/categories/${category}`
+          `https://blog-app-production-6e12.up.railway.app/api/posts/categories/${category}`
         );
 
         console.log(data);

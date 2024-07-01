@@ -26,7 +26,7 @@ const DashBoardItem = ({ post }) => {
           <div className=" w-full flex items-center justify-between max-md:flex-wrap max-md:text-sm max-md:justify-center max-md:gap-y-2">
             <div className="flex items-center justify-center gap-5">
               <img
-                src={`http://localhost:5000/uploads/${post.thumbnail}`}
+                src={`https://blog-app-production-6e12.up.railway.app/uploads/${post.thumbnail}`}
                 alt="thumbnail"
                 className="rounded-sm w-20"
               />

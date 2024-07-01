@@ -24,7 +24,6 @@ const DashBoard = () => {
         const { data } = await axios.get(
           `https://blog-app-production-6e12.up.railway.app/api/posts/users/${id}`,
           {
-            withCredentials: true,
             headers: { Authorization: `Bearer ${token}` },
           }
         );

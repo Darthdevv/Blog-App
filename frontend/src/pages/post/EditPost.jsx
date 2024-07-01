@@ -24,7 +24,7 @@ const EditPost = () => {
     const getPost = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/posts/${id}`
+          `https://blog-app-production-6e12.up.railway.app/api/posts/${id}`
         );
 
         setTitle(data.title);
@@ -53,10 +53,9 @@ const EditPost = () => {
 
     try {
       const data = await axios.patch(
-        `http://localhost:5000/api/posts/${id}`,
+        `https://blog-app-production-6e12.up.railway.app/api/posts/${id}`,
         postData,
         {
-          withCredentials: true,
           headers: { Authorization: `Bearer ${token}` },
         }
       );

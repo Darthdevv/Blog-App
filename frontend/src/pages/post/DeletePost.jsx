@@ -12,10 +12,12 @@ const DeletePost = ({ postId : id , color }) => {
 
   const removePost = async (id) => {
     try {
-      const data = await axios.delete(`http://localhost:5000/api/posts/${id}`, {
-        withCredentials: true,
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const data = await axios.delete(
+        `https://blog-app-production-6e12.up.railway.app/api/posts/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       if (data.status == 204) {
         if (location.pathname == `/myposts/${currentUser.id}`) {
