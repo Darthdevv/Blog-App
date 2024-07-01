@@ -13,7 +13,12 @@ export const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "https://blog-app-production-6e12.up.railway.app",
+  })
+);
 app.use(upload());
 app.use('/uploads', express.static(__dirname + '/uploads'));
 

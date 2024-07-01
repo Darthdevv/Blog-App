@@ -17,7 +17,7 @@ const PostAuthor = ({ creator, createdAt }) => {
     const getAuthor = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:5000/api/users/${creator}`
+          `https://blog-app-production-6e12.up.railway.app/api/users/${creator}`
         );
         setAuthor(data);
 
