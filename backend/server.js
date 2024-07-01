@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
     credentials: true,
-    origin: "https://blog-app-production-6e12.up.railway.app",
+    origin: "https://blog-app-production-6e12.up.railway.app/api/posts",
   })
 );
 app.use(upload());
