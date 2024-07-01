@@ -39,7 +39,7 @@ const Register = () => {
       setLoading(true);
       try {
         let response = await axios.post(
-          `http://localhost:5000/api/users/register`,
+          `https://blog-app-production-6e12.up.railway.app/api/users/register`,
           values
         );
         const newUser = await response.data;

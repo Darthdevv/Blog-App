@@ -38,7 +38,7 @@ const Login = () => {
       setLoading(true);
       try {
         let response = await axios.post(
-          `http://localhost:5000/api/users/login`,
+          `https://blog-app-production-6e12.up.railway.app/api/users/login`,
           values
         );
         const loggedUser = await response.data;
